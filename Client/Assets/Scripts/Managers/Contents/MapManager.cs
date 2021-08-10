@@ -31,6 +31,7 @@ public class MapManager
 
         string mapName = "Map_" + mapId.ToString("000");
         GameObject go = Managers.Resource.Instantiate($"Map/{mapName}");
+        go.name = "Map";
 
         GameObject collision = Util.FindChild(go, "Tilemap_Collision", true);
         if (collision != null)
@@ -67,6 +68,7 @@ public class MapManager
         if (map != null)
         {
             GameObject.Destroy(map);
+            CurrentGrid = null;
         }
     }
 }

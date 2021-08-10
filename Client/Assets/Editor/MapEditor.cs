@@ -30,9 +30,9 @@ public class MapEditor
                 writer.WriteLine(tmBase.cellBounds.yMin);
                 writer.WriteLine(tmBase.cellBounds.yMax);
 
-                for (int y = tmBase.cellBounds.yMax; y >= tm.cellBounds.yMin; y--)
+                for (int y = tmBase.cellBounds.yMax; y >= tmBase.cellBounds.yMin; y--)
                 {
-                    for (int x = tmBase.cellBounds.xMin; x <= tm.cellBounds.xMax; x++)
+                    for (int x = tmBase.cellBounds.xMin; x <= tmBase.cellBounds.xMax; x++)
                     {
                         TileBase tile = tm.GetTile(new Vector3Int(x, y, 0));
                         if (tile != null)
