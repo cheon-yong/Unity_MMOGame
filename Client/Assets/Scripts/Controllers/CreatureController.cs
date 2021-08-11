@@ -11,7 +11,7 @@ public class CreatureController : MonoBehaviour
     protected Animator _animator;
     protected SpriteRenderer _sprite;
 
-    CreatureState _state = CreatureState.Idle;
+    protected CreatureState _state = CreatureState.Idle;
     public CreatureState State
     {
         get { return _state; }
@@ -25,8 +25,8 @@ public class CreatureController : MonoBehaviour
         }
     }
 
-    MoveDir _lastDir = MoveDir.Down;
-    MoveDir _dir = MoveDir.Down;
+    protected MoveDir _lastDir = MoveDir.Down;
+    protected MoveDir _dir = MoveDir.Down;
     public MoveDir Dir
     {
         get { return _dir; }
@@ -140,7 +140,6 @@ public class CreatureController : MonoBehaviour
     void Start()
     {
         Init();
-        
     }
 
     void Update()
