@@ -40,4 +40,14 @@ public class MonsterController : CreatureController
             Dir = MoveDir.None;
         }
     }
+    public override void OnDamaged()
+    {
+        GameObject effect = Managers.Resource.Instantiate("Effect/DieEffect");
+        effect.transform.position = gameObject.transform.position;
+        effect.GetComponent<Animator>().Play("Start");
+        GameObject.Destroy(effect, 0.5f);
+
+        Managers.Object.Remove(gameObject);
+        Managers.Resource.Destroy(gameObject);
+    }
 }
