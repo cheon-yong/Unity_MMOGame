@@ -1,49 +1,51 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager
 {
-    List<GameObject> _objects = new List<GameObject>();
-    public void Add(GameObject go)
-    {
-        _objects.Add(go);
-    }
+	//Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
+	List<GameObject> _objects = new List<GameObject>();
 
-    public void Remove(GameObject go)
-    {
-        _objects.Remove(go);
-    }
+	public void Add(GameObject go)
+	{
+		_objects.Add(go);
+	}
 
-    public GameObject Find(Vector3Int cellPos)
-    {
-        foreach (GameObject obj in _objects)
-        {
-            CreatureController cc = obj.GetComponent<CreatureController>();
-            if (cc == null)
-                continue;
+	public void Remove(GameObject go)
+	{
+		_objects.Remove(go);
+	}
 
-            if (cc.CellPos == cellPos)
-                return obj;
-        }
+	public GameObject Find(Vector3Int cellPos)
+	{
+		foreach (GameObject obj in _objects)
+		{
+			CreatureController cc = obj.GetComponent<CreatureController>();
+			if (cc == null)
+				continue;
 
-        return null;
-    }
+			if (cc.CellPos == cellPos)
+				return obj;
+		}
 
-    public GameObject Find(Func<GameObject, bool> condition)
-    {
-        foreach (GameObject obj in _objects)
-        {
-            if (condition.Invoke(obj))
-                return obj;
-        }
+		return null;
+	}
 
-        return null;
-    }
+	public GameObject Find(Func<GameObject, bool> condition)
+	{
+		foreach (GameObject obj in _objects)
+		{
+			if (condition.Invoke(obj))
+				return obj;
+		}
 
-    public void Clear()
-    {
-        _objects.Clear();
-    }
+		return null;
+	}
+
+	public void Clear()
+	{
+		_objects.Clear();
+	}
 }
