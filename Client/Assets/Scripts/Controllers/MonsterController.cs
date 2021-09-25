@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -26,10 +27,10 @@ public class MonsterController : CreatureController
 
 	public override CreatureState State
 	{
-		get { return _state; }
+		get { return PosInfo.State; }
 		set
 		{
-			if (_state == value)
+			if (PosInfo.State == value)
 				return;
 
 			base.State = value;
@@ -53,7 +54,7 @@ public class MonsterController : CreatureController
 		base.Init();
 
 		State = CreatureState.Idle;
-		Dir = MoveDir.None;
+		Dir = MoveDir.Down;
 
 		_speed = 3.0f;
 		_rangedSkill = (Random.Range(0, 2) == 0 ? true : false);
@@ -131,7 +132,7 @@ public class MonsterController : CreatureController
 		effect.GetComponent<Animator>().Play("START");
 		GameObject.Destroy(effect, 0.5f);
 
-		Managers.Object.Remove(gameObject);
+		Managers.Object.Remove(Id);
 		Managers.Resource.Destroy(gameObject);
 	}
 
@@ -202,7 +203,7 @@ public class MonsterController : CreatureController
 	{
 		GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
 		ArrowController ac = go.GetComponent<ArrowController>();
-		ac.Dir = _lastDir;
+		ac.Dir = Dir;
 		ac.CellPos = CellPos;
 
 		// 대기 시간

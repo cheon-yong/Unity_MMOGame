@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using UnityEngine;
@@ -6,45 +7,82 @@ using static Define;
 
 public class CreatureController : MonoBehaviour
 {
+	public int Id { get; set; }
+
 	[SerializeField]
 	public float _speed = 5.0f;
 
-	public Vector3Int CellPos { get; set; } = Vector3Int.zero;
+	protected bool _updated = false;
+
+	PositionInfo _positionInfo = new PositionInfo();
+	public PositionInfo PosInfo
+    {
+		get { return _positionInfo; }
+		set
+        {
+			if (_positionInfo.Equals(value))
+				return;
+
+			CellPos = new Vector3Int(value.PosX, value.PosY, 0);
+			State = value.State;
+			Dir = value.MoveDir;
+        }
+    }
+
+	public void SyncPos()
+    {
+		Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
+		transform.position = destPos;
+	}
+
+	public Vector3Int CellPos
+	{
+		get
+		{
+			return new Vector3Int(PosInfo.PosX, PosInfo.PosY, 0);
+		}
+		set
+		{
+			if (PosInfo.PosX == value.x && PosInfo.PosY == value.y)
+				return;
+
+			PosInfo.PosX = value.x;
+			PosInfo.PosY = value.y;
+			_updated = true;
+		}
+	}
 
 	protected Animator _animator;
 	protected SpriteRenderer _sprite;
 
-	[SerializeField]
-	protected CreatureState _state = CreatureState.Idle;
 	public virtual CreatureState State
 	{
-		get { return _state; }
+		get { return PosInfo.State; }
 		set
 		{
-			if (_state == value)
+			if (PosInfo.State == value)
 				return;
 
-			_state = value;
+			PosInfo.State = value;
 			UpdateAnimation();
+			_updated = true;
 		}
 	}
 
-	protected MoveDir _lastDir = MoveDir.Down;
 	[SerializeField]
 	protected MoveDir _dir = MoveDir.Down;
 	public MoveDir Dir
 	{
-		get { return _dir; }
+		get { return PosInfo.MoveDir; }
 		set
 		{
-			if (_dir == value)
+			if (PosInfo.MoveDir == value)
 				return;
 
-			_dir = value;
-			if (value != MoveDir.None)
-				_lastDir = value;
+			PosInfo.MoveDir = value;
 
 			UpdateAnimation();
+			_updated = true;
 		}
 	}
 
@@ -56,17 +94,15 @@ public class CreatureController : MonoBehaviour
 			return MoveDir.Left;
 		else if (dir.y > 0)
 			return MoveDir.Up;
-		else if (dir.y < 0)
-			return MoveDir.Down;
 		else
-			return MoveDir.None;
+			return MoveDir.Down;
 	}
 
 	public Vector3Int GetFrontCellPos()
 	{
 		Vector3Int cellPos = CellPos;
 
-		switch (_lastDir)
+		switch (Dir)
 		{
 			case MoveDir.Up:
 				cellPos += Vector3Int.up;
@@ -87,9 +123,9 @@ public class CreatureController : MonoBehaviour
 
 	protected virtual void UpdateAnimation()
 	{
-		if (_state == CreatureState.Idle)
+		if (State == CreatureState.Idle)
 		{
-			switch (_lastDir)
+			switch (Dir)
 			{
 				case MoveDir.Up:
 					_animator.Play("IDLE_BACK");
@@ -109,9 +145,9 @@ public class CreatureController : MonoBehaviour
 					break;
 			}
 		}
-		else if (_state == CreatureState.Moving)
+		else if (State == CreatureState.Moving)
 		{
-			switch (_dir)
+			switch (Dir)
 			{
 				case MoveDir.Up:
 					_animator.Play("WALK_BACK");
@@ -131,9 +167,9 @@ public class CreatureController : MonoBehaviour
 					break;
 			}
 		}
-		else if (_state == CreatureState.Skill)
+		else if (State == CreatureState.Skill)
 		{
-			switch (_lastDir)
+			switch (Dir)
 			{
 				case MoveDir.Up:
 					_animator.Play("ATTACK_BACK");
@@ -175,6 +211,10 @@ public class CreatureController : MonoBehaviour
 		_sprite = GetComponent<SpriteRenderer>();
 		Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
 		transform.position = pos;
+
+		State = CreatureState.Idle;
+		Dir = MoveDir.Down;
+		UpdateAnimation();
 	}
 
 	protected virtual void UpdateController()
@@ -222,37 +262,7 @@ public class CreatureController : MonoBehaviour
 
 	protected virtual void MoveToNextPos()
 	{
-		if (_dir == MoveDir.None)
-		{
-			State = CreatureState.Idle;
-			return;
-		}
-
-		Vector3Int destPos = CellPos;
-
-		switch (_dir)
-		{
-			case MoveDir.Up:
-				destPos += Vector3Int.up;
-				break;
-			case MoveDir.Down:
-				destPos += Vector3Int.down;
-				break;
-			case MoveDir.Left:
-				destPos += Vector3Int.left;
-				break;
-			case MoveDir.Right:
-				destPos += Vector3Int.right;
-				break;
-		}
-
-		if (Managers.Map.CanGo(destPos))
-		{
-			if (Managers.Object.Find(destPos) == null)
-			{
-				CellPos = destPos;
-			}
-		}
+		
 	}
 
 	protected virtual void UpdateSkill()
