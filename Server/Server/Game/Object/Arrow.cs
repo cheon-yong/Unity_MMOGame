@@ -43,7 +43,7 @@ namespace Server.Game
                 GameObject target = Room.Map.Find(destPos);
                 if (target != null)
                 {
-                    // TODO : 피격판정 
+                    target.OnDamaged(this, Data.damage + Owner.Stat.Attack);
                 }
 
                 // 소멸
