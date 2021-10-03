@@ -58,7 +58,6 @@ public class ObjectManager
 			ac.Dir = info.PosInfo.MoveDir;
 			ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
 			ac.SyncPos();
-
         }
     }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.WellKnownTypes;
+using Server.Data;
 using Server.Game;
 using ServerCore;
 
@@ -25,8 +26,10 @@ namespace Server
 
 		static void Main(string[] args)
 		{
-			RoomManager.Instance.Add(1);
+			ConfigManager.LoadConfig();
+			DataManager.LoadData();
 
+			RoomManager.Instance.Add(1);
 
 			// DNS (Domain Name System)
 			string host = Dns.GetHostName();
@@ -45,7 +48,7 @@ namespace Server
 				//JobTimer.Instance.Flush();
 				RoomManager.Instance.Find(1).Update();
 
-				Thread.Sleep(100);
+				//Thread.Sleep(100);
 			}
 		}
 	}
