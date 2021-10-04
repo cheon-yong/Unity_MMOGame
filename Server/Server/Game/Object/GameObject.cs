@@ -25,6 +25,11 @@ namespace Server.Game
 			get { return Stat.Speed; }
 			set { Stat.Speed = value; }
 		}
+		public int Hp
+        {
+			get { return Stat.Hp; }
+			set { Stat.Hp = Math.Clamp(value, 0, Stat.MaxHp) ; }
+        }
 
 		public CreatureState State
         {
