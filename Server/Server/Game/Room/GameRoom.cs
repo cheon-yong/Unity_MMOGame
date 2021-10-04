@@ -26,16 +26,7 @@ namespace Server.Game
 			Monster monster = ObjectManager.Instance.Add<Monster>();
 			monster.CellPos = new Vector2Int(5, 5);
 			EnterGame(monster);
-
-			TestTimer();
 		}
-
-		// TEST
-		void TestTimer()
-        {
-            Console.WriteLine("TestTimer");
-			PushAfter(100, TestTimer);
-        }
 
 		// 누군가가 주기적으로 호출해주어야 함
 		public void Update()
