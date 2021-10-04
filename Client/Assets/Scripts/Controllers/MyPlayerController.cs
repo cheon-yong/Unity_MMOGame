@@ -1,4 +1,4 @@
-using Google.Protobuf.Protocol;
+Ôªøusing Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +7,12 @@ using static Define;
 public class MyPlayerController : PlayerController
 {
 	bool _moveKeyPressed = false;
-    protected override void Init()
-    {
-        base.Init();
-    }
+
+	protected override void Init()
+	{
+		base.Init();
+	}
+
 	protected override void UpdateController()
 	{
 		switch (State)
@@ -28,15 +30,14 @@ public class MyPlayerController : PlayerController
 
 	protected override void UpdateIdle()
 	{
-		// ¿Ãµø ªÛ≈¬∑Œ ∞•¡ˆ »Æ¿Œ
+		// Ïù¥Îèô ÏÉÅÌÉúÎ°ú Í∞àÏßÄ ÌôïÏù∏
 		if (_moveKeyPressed)
 		{
 			State = CreatureState.Moving;
 			return;
 		}
 
-		// Ω∫≈≥ ªÛ≈¬∑Œ ∞•¡ˆ »Æ¿Œ
-		if (Input.GetKey(KeyCode.Space))
+		if (_coSkillCooltime == null && Input.GetKey(KeyCode.Space))
 		{
 			Debug.Log("Skill !");
 
@@ -50,15 +51,17 @@ public class MyPlayerController : PlayerController
 
 	Coroutine _coSkillCooltime;
 	IEnumerator CoInputCooltime(float time)
-    {
+	{
 		yield return new WaitForSeconds(time);
 		_coSkillCooltime = null;
-    }
+	}
+
 	void LateUpdate()
 	{
 		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 	}
 
+	// ÌÇ§Î≥¥Îìú ÏûÖÎ†•
 	void GetDirInput()
 	{
 		_moveKeyPressed = true;
@@ -87,7 +90,7 @@ public class MyPlayerController : PlayerController
 
 	protected override void MoveToNextPos()
 	{
-		if (!_moveKeyPressed)
+		if (_moveKeyPressed == false)
 		{
 			State = CreatureState.Idle;
 			CheckUpdatedFlag();
@@ -114,7 +117,7 @@ public class MyPlayerController : PlayerController
 
 		if (Managers.Map.CanGo(destPos))
 		{
-			if (Managers.Object.Find(destPos) == null)
+			if (Managers.Object.FindCreature(destPos) == null)
 			{
 				CellPos = destPos;
 			}
@@ -122,15 +125,15 @@ public class MyPlayerController : PlayerController
 
 		CheckUpdatedFlag();
 	}
-	
+
 	protected override void CheckUpdatedFlag()
-    {
+	{
 		if (_updated)
-        {
+		{
 			C_Move movePacket = new C_Move();
 			movePacket.PosInfo = PosInfo;
 			Managers.Network.Send(movePacket);
 			_updated = false;
 		}
-    }
+	}
 }

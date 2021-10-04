@@ -12,7 +12,6 @@ public class PlayerController : CreatureController
 	protected override void Init()
 	{
 		base.Init();
-		AddHpBar();
 	}
 
 	protected override void UpdateAnimation()
@@ -93,26 +92,27 @@ public class PlayerController : CreatureController
 	}
 
 	protected override void UpdateController()
-	{
+	{		
 		base.UpdateController();
 	}
 
 	public void UseSkill(int skillId)
-    {
+	{
 		if (skillId == 1)
-        {
+		{
 			_coSkill = StartCoroutine("CoStartPunch");
-        }
+		}
 		else if (skillId == 2)
-        {
+		{
 			_coSkill = StartCoroutine("CoStartShootArrow");
-        }
-    }
+		}
+	}
 
 	protected virtual void CheckUpdatedFlag()
-    {
+	{
 
-    }
+	}
+
 	IEnumerator CoStartPunch()
 	{
 		// 대기 시간

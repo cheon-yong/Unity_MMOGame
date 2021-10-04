@@ -30,7 +30,7 @@ namespace Server.Game
 	}
 
 	public struct Vector2Int
-    {
+	{
 		public int x;
 		public int y;
 
@@ -42,13 +42,13 @@ namespace Server.Game
 		public static Vector2Int right { get { return new Vector2Int(1, 0); } }
 
 		public static Vector2Int operator+(Vector2Int a, Vector2Int b)
-        {
+		{
 			return new Vector2Int(a.x + b.x, a.y + b.y);
-        }
-    }
+		}
+	}
+
 	public class Map
 	{
-
 		public int MinX { get; set; }
 		public int MaxX { get; set; }
 		public int MinY { get; set; }
@@ -73,7 +73,7 @@ namespace Server.Game
 		}
 
 		public GameObject Find(Vector2Int cellPos)
-        {
+		{
 			if (cellPos.x < MinX || cellPos.x > MaxX)
 				return null;
 			if (cellPos.y < MinY || cellPos.y > MaxY)
@@ -85,11 +85,11 @@ namespace Server.Game
 		}
 
 		public bool ApplyLeave(GameObject gameObject)
-        {
+		{
 			PositionInfo posInfo = gameObject.PosInfo;
-			if (posInfo.PosX > MaxX || posInfo.PosX < MinX)
+			if (posInfo.PosX < MinX || posInfo.PosX > MaxX)
 				return false;
-			if (posInfo.PosY > MaxY || posInfo.PosY < MinY)
+			if (posInfo.PosY < MinY || posInfo.PosY > MaxY)
 				return false;
 
 			{
@@ -103,30 +103,27 @@ namespace Server.Game
 		}
 
 		public bool ApplyMove(GameObject gameObject, Vector2Int dest)
-        {
+		{
 			ApplyLeave(gameObject);
+
 			PositionInfo posInfo = gameObject.PosInfo;
-			
 			if (CanGo(dest, true) == false)
 				return false;
-            
-            {
+
+			{
 				int x = dest.x - MinX;
 				int y = MaxY - dest.y;
 				_objects[y, x] = gameObject;
-            }
+			}
 
-
-			//실제로 좌표 이동
+			// 실제 좌표 이동
 			posInfo.PosX = dest.x;
 			posInfo.PosY = dest.y;
-
 			return true;
-        }
+		}
 
 		public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
 		{
-
 			string mapName = "Map_" + mapId.ToString("000");
 
 			// Collision 관련 파일
@@ -276,4 +273,5 @@ namespace Server.Game
 
 		#endregion
 	}
+
 }

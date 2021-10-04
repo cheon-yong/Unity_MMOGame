@@ -14,97 +14,102 @@ enum MsgId {
   C_SKILL = 6;
   S_SKILL = 7;
   S_CHANGE_HP = 8;
+  S_DIE = 9;
 }
 
 enum CreatureState {
-	IDLE = 0;
-	MOVING = 1;
-	SKILL = 2;
-	DEAD = 3;
+  IDLE = 0;
+  MOVING = 1;
+  SKILL = 2;
+  DEAD = 3;
 }
 
 enum MoveDir {
-	UP = 0;
-	DOWN = 1;
-	LEFT = 2;
-	RIGHT = 3;
+  UP = 0;
+  DOWN = 1;
+  LEFT = 2;
+  RIGHT = 3;
 }
 
 enum GameObjectType {
-	NONE = 0;
-	PLAYER = 1;
-	MONSTER = 2;
-	PROJECTILE = 3;
+  NONE = 0;
+  PLAYER = 1;
+  MONSTER = 2;
+  PROJECTILE = 3;
 }
 
 enum SkillType {
-	SKILL_NONE = 0;
-	SKILL_AUTO = 1;
-	SKILL_PROJECTILE = 2;
+  SKILL_NONE = 0;
+  SKILL_AUTO = 1;
+  SKILL_PROJECTILE = 2;
 }
 
 message S_EnterGame {
-	ObjectInfo player = 1;
+  ObjectInfo player = 1;
 }
 
 message S_LeaveGame {
-
 }
 
 message S_Spawn {
-	repeated ObjectInfo objects = 1;
+  repeated ObjectInfo objects = 1;
 }
 
 message S_Despawn {
-	repeated int32 objectIds = 1;
+  repeated int32 objectIds = 1;
 }
 
 message C_Move {
-	PositionInfo posInfo = 1;
+  PositionInfo posInfo = 1;
 }
 
 message S_Move {
-	int32 objectId = 1;
-	PositionInfo posInfo = 2;
+  int32 objectId = 1;
+  PositionInfo posInfo = 2;
 }
 
 message C_Skill {
-	SkillInfo info = 1;
+  SkillInfo info = 1;
 }
 
 message S_Skill {
-	int32 objectId = 1;
-	SkillInfo info = 2;
+  int32 objectId = 1;
+  SkillInfo info = 2;
 }
 
 message S_ChangeHp {
-	int32 objectId = 1;
-	int32 hp = 2;
+  int32 objectId = 1;
+  int32 hp = 2;
+}
+
+message S_Die {
+  int32 objectId = 1;
+  int32 attackerId = 2;
 }
 
 message ObjectInfo {
-	int32 objectId = 1;
-	string name = 2;
-	PositionInfo posInfo = 3;
-	StatInfo statinfo = 4;
+  int32 objectId = 1;
+  string name = 2;
+  PositionInfo posInfo = 3;
+  StatInfo statInfo = 4;
 }
 
 message PositionInfo {
-	CreatureState state = 1;
-	MoveDir moveDir = 2;
-	int32 posX = 3;
-	int32 posY = 4;
+  CreatureState state = 1;
+  MoveDir moveDir = 2;
+  int32 posX = 3;
+  int32 posY = 4;
 }
 
 message StatInfo {
-	int32 level = 1;
-	int32 hp = 2;
-	int32 maxHp = 3;
-	int32 attack = 4;
-	float speed = 5;
-	int32 totalExp = 6;
+  int32 level = 1;
+  int32 hp = 2;
+  int32 maxHp = 3;
+  int32 attack = 4;
+  float speed = 5;
+  int32 totalExp = 6;
 }
 
 message SkillInfo {
-	int32 skillId = 1;
+  int32 skillId = 1;
 }

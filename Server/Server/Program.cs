@@ -43,11 +43,11 @@ namespace Server
 			//FlushRoom();
 			//JobTimer.Instance.Push(FlushRoom);
 
+			// TODO
 			while (true)
 			{
 				//JobTimer.Instance.Flush();
 				RoomManager.Instance.Find(1).Update();
-
 				//Thread.Sleep(100);
 			}
 		}

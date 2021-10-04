@@ -5,17 +5,19 @@ using System.Text;
 
 namespace Server.Game
 {
-    public class GameObject
-    {
-        public GameObjectType ObjectType { get; protected set; } = GameObjectType.None;
+	public class GameObject
+	{
+		public GameObjectType ObjectType { get; protected set; } = GameObjectType.None;
 		public int Id
-        {
+		{
 			get { return Info.ObjectId; }
 			set { Info.ObjectId = value; }
-        }
-        public GameRoom Room { get; set; }
-        public ObjectInfo Info { get; set; } = new ObjectInfo();
-        public PositionInfo PosInfo { get; private set; } = new PositionInfo();
+		}
+
+		public GameRoom Room { get; set; }
+
+		public ObjectInfo Info { get; set; } = new ObjectInfo();
+		public PositionInfo PosInfo { get; private set; } = new PositionInfo();
 		public StatInfo Stat { get; private set; } = new StatInfo();
 
 		public float Speed
@@ -23,11 +25,12 @@ namespace Server.Game
 			get { return Stat.Speed; }
 			set { Stat.Speed = value; }
 		}
-        public GameObject()
-        {
-            Info.PosInfo = PosInfo;
-			Info.Statinfo = Stat;
-        }
+
+		public GameObject()
+		{
+			Info.PosInfo = PosInfo;
+			Info.StatInfo = Stat;
+		}
 
 		public Vector2Int CellPos
 		{
@@ -35,6 +38,7 @@ namespace Server.Game
 			{
 				return new Vector2Int(PosInfo.PosX, PosInfo.PosY);
 			}
+
 			set
 			{
 				PosInfo.PosX = value.x;
@@ -43,9 +47,10 @@ namespace Server.Game
 		}
 
 		public Vector2Int GetFrontCellPos()
-        {
+		{
 			return GetFrontCellPos(PosInfo.MoveDir);
-        }
+		}
+
 		public Vector2Int GetFrontCellPos(MoveDir dir)
 		{
 			Vector2Int cellPos = CellPos;
@@ -68,9 +73,10 @@ namespace Server.Game
 
 			return cellPos;
 		}
+
 		public virtual void OnDamaged(GameObject attacker, int damage)
 		{
-			Stat.Hp -= Math.Max(Stat.Hp - damage, 0);
+			Stat.Hp = Math.Max(Stat.Hp - damage, 0);
 
 			S_ChangeHp changePacket = new S_ChangeHp();
 			changePacket.ObjectId = Id;
@@ -78,14 +84,28 @@ namespace Server.Game
 			Room.Broadcast(changePacket);
 
 			if (Stat.Hp <= 0)
-            {
+			{
 				OnDead(attacker);
-            }
+			}
 		}
 
 		public virtual void OnDead(GameObject attacker)
-        {
+		{
+			S_Die diePacket = new S_Die();
+			diePacket.ObjectId = Id;
+			diePacket.AttackerId = attacker.Id;
+			Room.Broadcast(diePacket);
 
-        }
+			GameRoom room = Room;
+			room.LeaveGame(Id);
+
+			Stat.Hp = Stat.MaxHp;
+			PosInfo.State = CreatureState.Idle;
+			PosInfo.MoveDir = MoveDir.Down;
+			PosInfo.PosX = 0;
+			PosInfo.PosY = 0;
+
+			room.EnterGame(this);
+		}
 	}
 }
