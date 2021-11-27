@@ -44,6 +44,7 @@ namespace Server
                     {
 						LobbyPlayerInfo lobbyPlayer = new LobbyPlayerInfo()
 						{
+							PlayerDbId = playerDb.PlayerDbId,
 							Name = playerDb.PlayerName,
 							StatInfo = new StatInfo()
 							{
@@ -63,20 +64,23 @@ namespace Server
 						loginOk.Players.Add(lobbyPlayer);
                     }
 					Send(loginOk);
-
+					// 로비로 이동
 					ServerState = PlayerServerState.ServerStateLobby;
 				}
 				else
 				{
 					AccountDb newAccount = new AccountDb() { AccountName = loginPacket.UniqueId };
 					db.Accounts.Add(newAccount);
-					db.SaveChanges();
+					bool success = db.SaveChangesEx(); // TODO : Exception
+					if (success == false)
+						return;
 
 					// AccountId를 메모리에 기억
 					AccountDbId = findAccount.AccountDbId;
-
 					S_Login loginOk = new S_Login() { LoginOk = 1 };
 					Send(loginOk);
+					// 로비로 이동
+					ServerState = PlayerServerState.ServerStateLobby;
 				}
 			}
 		}
@@ -92,6 +96,7 @@ namespace Server
 
 			MyPlayer = ObjectManager.Instance.Add<Player>();
 			{
+				MyPlayer.PlayerDbId = playerInfo.PlayerDbId;
 				MyPlayer.Info.Name = playerInfo.Name;
 				MyPlayer.Info.PosInfo.State = CreatureState.Idle;
 				MyPlayer.Info.PosInfo.MoveDir = MoveDir.Down;
@@ -145,11 +150,14 @@ namespace Server
 					};
 
 					db.Players.Add(newPlayerDb);
-					db.SaveChanges(); // TODO : ExceptionHandling
+					bool success = db.SaveChangesEx(); // TODO : Exception
+					if (success == false)
+						return;
 
 					// 메모리에 추가
 					LobbyPlayerInfo lobbyPlayer = new LobbyPlayerInfo()
 					{
+						PlayerDbId = newPlayerDb.PlayerDbId,
 						Name = createPacket.Name,
 						StatInfo = new StatInfo()
 						{
