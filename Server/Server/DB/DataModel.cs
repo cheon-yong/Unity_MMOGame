@@ -27,6 +27,7 @@ namespace Server.DB
         public int Hp { get; set; }
         public int MaxHp { get; set; }
         public float Speed { get; set; }
+        public int Attack { get; set; }
         public int TotalExp { get; set; }
     }
 }

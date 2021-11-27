@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.DB;
 
 namespace Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211127112911_PlayerStat2")]
+    partial class PlayerStat2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,8 +49,8 @@ namespace Server.Migrations
                     b.Property<int>("AccountDbId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Attack")
-                        .HasColumnType("int");
+                    b.Property<float>("Attack")
+                        .HasColumnType("real");
 
                     b.Property<int>("Hp")
                         .HasColumnType("int");

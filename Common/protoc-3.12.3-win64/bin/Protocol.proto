@@ -19,8 +19,8 @@ enum MsgId {
   C_LOGIN = 11;
   S_LOGIN = 12;
   C_ENTER_GAME = 13;
-  C_CREATEPLAYER = 14;
-  S_CREATEPLAYER = 15;
+  C_CREATE_PLAYER = 14;
+  S_CREATE_PLAYER = 15;
 }
 
 enum CreatureState {
@@ -45,9 +45,9 @@ enum GameObjectType {
 }
 
 enum PlayerServerState {
-	SERVER_STATE_LOGIN = 0;
-	SERVER_STATE_LOBBY = 1;
-	SERVER_STATE_GAME = 2;
+  SERVER_STATE_LOGIN = 0;
+  SERVER_STATE_LOBBY = 1;
+  SERVER_STATE_GAME = 2;
 }
 
 enum SkillType {
@@ -103,29 +103,29 @@ message S_Connected {
 }
 
 message C_Login {
-	string uniqueId = 1;
+  string uniqueId = 1;
 }
 
 message S_Login {
-	int32 loginOk= 1;
-	repeated LobbyPlayerInfo players = 2;
+  int32 loginOk = 1;
+  repeated LobbyPlayerInfo players = 2;
 }
 
 message C_CreatePlayer {
-	string name = 1;
+  string name = 1;
 }
 
 message S_CreatePlayer {
-	LobbyPlayerInfo player = 1; 
+  LobbyPlayerInfo player = 1;
 }
 
 message C_EnterGame {
-	string name = 1;
+  string name = 1;
 }
 
 message LobbyPlayerInfo {
-	string name = 1;
-	StatInfo statInfo = 2;
+  string name = 1;
+  StatInfo statInfo = 2;
 }
 
 message ObjectInfo {
