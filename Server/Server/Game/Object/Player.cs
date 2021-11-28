@@ -42,18 +42,7 @@ namespace Server.Game
 
 			// 서빙 담당?
 			// 결제 담당?
-			using (AppDbContext db = new AppDbContext())
-			{
-				PlayerDb playerDb = new PlayerDb();
-				playerDb.PlayerDbId = PlayerDbId;
-				playerDb.Hp = Stat.Hp;
-
-				db.Entry(playerDb).State = EntityState.Unchanged;
-				db.Entry(playerDb).Property(nameof(PlayerDb.Hp)).IsModified = true;
-				bool success = db.SaveChangesEx(); // TODO : Exception
-				if (success == false)
-					return;
-			}
+			DbTransaction.SavePlayerStatus_AllInOne(this, Room);
 		}
 	}
 }
