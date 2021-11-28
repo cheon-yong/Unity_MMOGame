@@ -45,42 +45,43 @@ enum GameObjectType {
   PROJECTILE = 3;
 }
 
-enum PlayerServerState {
-  SERVER_STATE_LOGIN = 0;
-  SERVER_STATE_LOBBY = 1;
-  SERVER_STATE_GAME = 2;
-}
-
 enum SkillType {
   SKILL_NONE = 0;
   SKILL_AUTO = 1;
   SKILL_PROJECTILE = 2;
 }
 
+enum PlayerServerState {
+  SERVER_STATE_LOGIN = 0;
+  SERVER_STATE_LOBBY = 1;
+  SERVER_STATE_GAME = 2;
+}
+
 enum ItemType {
-	ITEM_TYPE_NONE = 0;
-	ITEM_TYPE_WEAPON = 1;
-	ITEM_TYPE_ARMOR= 2;
-	ITEM_TYPE_CONSUMABLE = 3;
-}
-
-enum ArmorType {
-	ARMOR_TYPE_NONE = 0;
-	ARMOR_TYPE_HELMET = 1;
-	ARMOR_TYPE_ARMOR = 2;
-	ARMOR_TYPE_BOOTS = 3;
-}
-
-enum ConsumableType {
-	CONSUMABLE_TYPE_NONE = 0;
-	CONSUMABLE_TYPE_POTION = 1;
+  ITEM_TYPE_NONE = 0;
+  ITEM_TYPE_WEAPON = 1;
+  ITEM_TYPE_ARMOR = 2;
+  ITEM_TYPE_CONSUMABLE = 3;
 }
 
 enum WeaponType {
-	WEAPON_TYPE_NONE = 0;
-	WEAPON_TYPE_SWORD = 1;
-	WEAPON_TYPE_BOW = 2;
+  WEAPON_TYPE_NONE = 0;
+  WEAPON_TYPE_SWORD = 1;
+  WEAPON_TYPE_BOW = 2;
 }
+
+enum ArmorType {
+  ARMOR_TYPE_NONE = 0;
+  ARMOR_TYPE_HELMET = 1;
+  ARMOR_TYPE_ARMOR = 2;
+  ARMOR_TYPE_BOOTS = 3;
+}
+
+enum ConsumableType {
+   CONSUMABLE_TYPE_NONE = 0;
+   CONSUMABLE_TYPE_POTION = 1;
+}
+
 
 message S_EnterGame {
   ObjectInfo player = 1;

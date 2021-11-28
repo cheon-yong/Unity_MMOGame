@@ -29,7 +29,7 @@ public class Item
     public int Slot
     {
         get { return Info.Slot; }
-        set { Info.Count = value; }
+        set { Info.Slot = value; }
     }
 
     public ItemType ItemType { get; private set; }
@@ -66,6 +66,7 @@ public class Item
         {
             item.ItemDbId = itemInfo.ItemDbId;
             item.Count = itemInfo.Count;
+            item.Slot = itemInfo.Slot;
         }
 
         return item;

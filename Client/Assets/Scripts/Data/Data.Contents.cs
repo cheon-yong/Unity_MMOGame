@@ -49,18 +49,19 @@ namespace Data
 		public ItemType itemType;
 		public string iconPath;
 	}
-
+	[Serializable]
 	public class WeaponData : ItemData
 	{
 		public WeaponType weaponType;
 		public int damage;
 	}
-
+	[Serializable]
 	public class ArmorData : ItemData
 	{
 		public ArmorType armorType;
 		public int defence;
 	}
+	[Serializable]
 	public class ConsumableData : ItemData
 	{
 		public ConsumableType consumableType;
