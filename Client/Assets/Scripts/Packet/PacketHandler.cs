@@ -149,6 +149,26 @@ class PacketHandler
 			Managers.Network.Send(enterGamePacket);
 		}
     }
+
+	public static void S_ItemListHandler(PacketSession session, IMessage packet)
+    {
+		S_ItemList itemList = (S_ItemList)packet;
+
+		UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+		UI_Inventory invenUI = gameSceneUI.InvenUI;
+
+		Managers.Inven.Clear();
+
+		foreach (ItemInfo itemInfo in itemList.Items)
+        {
+			Item item = Item.MakeItem(itemInfo);
+			Managers.Inven.Add(item);
+        }
+
+		// UI 에서 표시
+		invenUI.gameObject.SetActive(true);
+		invenUI.RefreshUI();
+    }
 }
 
 
