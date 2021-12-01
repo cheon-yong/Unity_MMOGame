@@ -22,6 +22,7 @@ enum MsgId {
   C_CREATE_PLAYER = 14;
   S_CREATE_PLAYER = 15;
   S_ITEM_LIST = 16;
+  S_ADD_ITEM = 17;
 }
 
 enum CreatureState {
@@ -81,7 +82,6 @@ enum ConsumableType {
    CONSUMABLE_TYPE_NONE = 0;
    CONSUMABLE_TYPE_POTION = 1;
 }
-
 
 message S_EnterGame {
   ObjectInfo player = 1;
@@ -151,6 +151,10 @@ message C_EnterGame {
 }
 
 message S_ItemList {
+  repeated ItemInfo items = 1;
+}
+
+message S_AddItem {
   repeated ItemInfo items = 1;
 }
 
