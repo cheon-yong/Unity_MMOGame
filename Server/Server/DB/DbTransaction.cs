@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Server.DB
 {
-    public class DbTransaction : JobSerializer
+    public partial class DbTransaction : JobSerializer
     {
         public static DbTransaction Instance { get; } = new DbTransaction();
 
@@ -77,13 +77,15 @@ namespace Server.DB
         {
             Console.WriteLine($"Hp Saved({hp})");
         }
-
         public static void RewardPlayer(Player player, RewardData rewardData, GameRoom room)
         {
             if (player == null || rewardData == null || room == null)
                 return;
 
             // TODO : 문제가 있다 뭘까...
+            // 1) DB에다가 저장 요청
+            // 2) DB 저장 OK
+            // 3) 메모리에 적용
             int? slot = player.Inven.GetEmptySlot();
             if (slot == null)
                 return;
@@ -94,6 +96,7 @@ namespace Server.DB
                 Count = rewardData.count,
                 Slot = slot.Value,
                 OwnerDbId = player.PlayerDbId
+                
             };
 
             // YOU (Player)
