@@ -20,10 +20,15 @@ public class UI_Inventory : UI_Base
             UI_Inventory_Item item = go.GetOrAddComponent<UI_Inventory_Item>();
             Items.Add(item);
         }
+
+        RefreshUI();
     }
 
     public void RefreshUI()
     {
+        if (Items.Count == 0)
+            return;
+
         List<Item> items = Managers.Inven.Items.Values.ToList();
         items.Sort((left, right) => { return left.Slot - right.Slot; });
 
@@ -32,7 +37,7 @@ public class UI_Inventory : UI_Base
             if (item.Slot < 0 || item.Slot >= 20)
                 continue;
 
-            Items[item.Slot].SetItem(item.TemplateId, items.Count);
+            Items[item.Slot].SetItem(item);
         }
     }
 }
