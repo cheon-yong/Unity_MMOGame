@@ -17,73 +17,58 @@ using ServerCore;
 
 namespace Server
 {
+	// 1. GameRoom 방식의 간단한 동기화 <- OK
+	// 2. 더 넓은 영역 관리
+	// 3. 심리스 MMO
+
+	// 1. Recv (N개) 서빙
+	// 2. GameLogic (1) 요리사
+	// 3. Send(1) 서빙
+	// 4. DB(1) 결제 / 장부
 	class Program
 	{
 		static Listener _listener = new Listener();
-		static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
-
-
-		static void TickRoom(GameRoom room, int tick = 100)
+		static void GameLogicTask()
         {
-			var timer = new System.Timers.Timer();
-			timer.Interval = tick;
-			timer.Elapsed += ((s, e) => { room.Update(); });
-			timer.AutoReset = true;
-			timer.Enabled = true;
-
-			_timers.Add(timer);
+			while (true)
+            {
+				GameLogic.Instance.Update();
+				Thread.Sleep(0);
+            }
         }
+
+		static void DbTask()
+        {
+			while (true)
+			{
+				DbTransaction.Instance.Flush();
+				Thread.Sleep(0);
+			}
+		}
+
+		static void NetworkTask()
+        {
+			while (true)
+			{
+				List<ClientSession> sessions = SessionManager.Instance.GetSessions();
+				foreach (ClientSession session in sessions)
+                {
+					session.FlushSend();
+                }
+				Thread.Sleep(0);
+            }
+        }
+
 
 		static void Main(string[] args)
 		{
 			ConfigManager.LoadConfig();
 			DataManager.LoadData();
 
-			// TEST CODE
-			using (AppDbContext db = new AppDbContext())
-            {
-				PlayerDb player = db.Players.FirstOrDefault();
-				if (player != null)
-                {
-					db.Items.Add(new ItemDb()
-					{
-						TemplateId = 1,
-						Count = 1,
-						Slot = 0,
-						Owner = player
-					});
-
-					db.Items.Add(new ItemDb()
-					{
-						TemplateId = 100,
-						Count = 1,
-						Slot = 1,
-						Owner = player
-					});
-
-					db.Items.Add(new ItemDb()
-					{
-						TemplateId = 101,
-						Count = 1,
-						Slot = 2,
-						Owner = player
-					}); 
-
-					db.Items.Add(new ItemDb()
-					{
-						TemplateId = 200,
-						Count = 10,
-						Slot = 5,
-						Owner = player
-					});
-
-					db.SaveChangesEx();
-				}
-            }
-
-
-			GameRoom room =RoomManager.Instance.Add(1);
-			TickRoom(room, 50);
+			GameLogic.Instance.Push(() =>
+			{
+				GameLogic.Instance.Add(1);
+			});
 
 			// DNS (Domain Name System)
 			string host = Dns.GetHostName();
@@ -94,14 +79,18 @@ namespace Server
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-			//FlushRoom();
-			//JobTimer.Instance.Push(FlushRoom);
+            // GameLogicTast
+            {
+				Task gameLogicTask = new Task(GameLogicTask, TaskCreationOptions.LongRunning);
+				gameLogicTask.Start();
+            }
+			{
+				Task networkTask = new Task(NetworkTask, TaskCreationOptions.LongRunning);
+				networkTask.Start();
+            }
 
 			// TODO
-			while (true)
-			{
-				DbTransaction.Instance.Flush();
-			}
+			DbTask();
 		}
 	}
 }
