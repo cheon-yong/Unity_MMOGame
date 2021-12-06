@@ -34,7 +34,8 @@ namespace Server.Game
         }
 
 		// FSM (Finite State Machine)
-		
+
+		IJob _job;
 		public override void Update()
         {
 			switch (State)
@@ -51,8 +52,11 @@ namespace Server.Game
 				case CreatureState.Dead:
 					UpdateDead();
 					break;
-
             }
+
+			// 0.2초마다 한번씩 Update
+			if (Room != null)
+				_job = Room.PushAfter(200, Update);
         }
 
 		Player _target;
@@ -202,6 +206,12 @@ namespace Server.Game
 
 		public override void OnDead(GameObject attacker)
 		{
+			if (_job != null)
+			{
+				_job.Cancel = true;
+				_job = null;
+			}
+
 			base.OnDead(attacker);
 
 			// TODO : 아이템 생성
@@ -213,10 +223,6 @@ namespace Server.Game
                 {
 					Player player = (Player)owner;
 					DbTransaction.RewardPlayer(player, rewardData, Room);
-                }
-				else
-                {
-                    Console.WriteLine("꽝");
                 }
             }
 		}
