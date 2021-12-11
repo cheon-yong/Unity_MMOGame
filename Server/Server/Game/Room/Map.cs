@@ -14,31 +14,31 @@ namespace Server.Game
 		public int X;
 
 		public static bool operator==(Pos lhs, Pos rhs)
-        {
+		{
 			return lhs.Y == rhs.Y && lhs.X == rhs.X;
-        }
+		}
 
 		public static bool operator!=(Pos lhs, Pos rhs)
 		{
 			return !(lhs == rhs);
 		}
 
-        public override bool Equals(object obj)
-        {
+		public override bool Equals(object obj)
+		{
 			return (Pos)obj == this;
-        }
+		}
 
-        public override int GetHashCode()
-        {
+		public override int GetHashCode()
+		{
 			long value = (Y << 32) | X;
 			return value.GetHashCode();
-        }
+		}
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-    }
+		public override string ToString()
+		{
+			return base.ToString();
+		}
+	}
 
 	public struct PQNode : IComparable<PQNode>
 	{
@@ -72,7 +72,7 @@ namespace Server.Game
 			return new Vector2Int(a.x + b.x, a.y + b.y);
 		}
 
-		public static Vector2Int operator-(Vector2Int a, Vector2Int b)
+		public static Vector2Int operator -(Vector2Int a, Vector2Int b)
 		{
 			return new Vector2Int(a.x - b.x, a.y - b.y);
 		}
@@ -123,7 +123,7 @@ namespace Server.Game
 		{
 			if (gameObject.Room == null)
 				return false;
-			if (gameObject.Room.Map == null)
+			if (gameObject.Room.Map != this)
 				return false;
 
 			PositionInfo posInfo = gameObject.PosInfo;
@@ -131,6 +131,10 @@ namespace Server.Game
 				return false;
 			if (posInfo.PosY < MinY || posInfo.PosY > MaxY)
 				return false;
+
+			// Zone
+			Zone zone = gameObject.Room.GetZone(gameObject.CellPos);
+			zone.Remove(gameObject);
 
 			{
 				int x = posInfo.PosX - MinX;
@@ -142,38 +146,67 @@ namespace Server.Game
 			return true;
 		}
 
-		public bool ApplyMove(GameObject gameObject, Vector2Int dest)
+		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool checkObjects = true, bool collision = true)
 		{
 			if (gameObject.Room == null)
 				return false;
-			if (gameObject.Room.Map == null)
+			if (gameObject.Room.Map != this)
 				return false;
-
-			ApplyLeave(gameObject);
 
 			PositionInfo posInfo = gameObject.PosInfo;
-			if (CanGo(dest, true) == false)
+			if (CanGo(dest, checkObjects) == false)
 				return false;
 
+			if (collision)
 			{
-				int x = dest.x - MinX;
-				int y = MaxY - dest.y;
-				_objects[y, x] = gameObject;
+				{
+					int x = posInfo.PosX - MinX;
+					int y = MaxY - posInfo.PosY;
+					if (_objects[y, x] == gameObject)
+						_objects[y, x] = null;
+				}
+				{ 
+					int x = dest.x - MinX;
+					int y = MaxY - dest.y;
+					_objects[y, x] = gameObject;
+				}
 			}
 
-			Player p = gameObject as Player;
-			if (p != null)
-            {
+			// Zone
+			GameObjectType type = ObjectManager.GetObjectTypeById(gameObject.Id);
+			if (type == GameObjectType.Player)
+			{
+				Player player = (Player)gameObject;
 				Zone now = gameObject.Room.GetZone(gameObject.CellPos);
 				Zone after = gameObject.Room.GetZone(dest);
 				if (now != after)
-                {
-					if (now != null)
-						now.Players.Remove(p);
-					if (after != null)
-						after.Players.Add(p);
-                }
-            }
+				{
+					now.Players.Remove(player);
+					after.Players.Add(player);
+				}
+			}
+			else if (type == GameObjectType.Monster)
+			{
+				Monster monster = (Monster)gameObject;
+				Zone now = gameObject.Room.GetZone(gameObject.CellPos);
+				Zone after = gameObject.Room.GetZone(dest);
+				if (now != after)
+				{
+					now.Monsters.Remove(monster);
+					after.Monsters.Add(monster);
+				}
+			}
+			else if (type == GameObjectType.Projectile)
+			{
+				Projectile projectile = (Projectile)gameObject;
+				Zone now = gameObject.Room.GetZone(gameObject.CellPos);
+				Zone after = gameObject.Room.GetZone(dest);
+				if (now != after)
+				{
+					now.Projectiles.Remove(projectile);
+					after.Projectiles.Add(projectile);
+				}
+			}
 
 			// 실제 좌표 이동
 			posInfo.PosX = dest.x;
@@ -216,7 +249,7 @@ namespace Server.Game
 		int[] _deltaX = new int[] { 0, 0, -1, 1 };
 		int[] _cost = new int[] { 10, 10, 10, 10 };
 
-		public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true)
+		public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true, int maxDist = 10)
 		{
 			List<Pos> path = new List<Pos>();
 
@@ -228,7 +261,6 @@ namespace Server.Game
 
 			// (y, x) 이미 방문했는지 여부 (방문 = closed 상태)
 			HashSet<Pos> closeList = new HashSet<Pos>(); // CloseList
-
 
 			// (y, x) 가는 길을 한 번이라도 발견했는지
 			// 발견X => MaxValue
@@ -260,6 +292,7 @@ namespace Server.Game
 
 				// 방문한다
 				closeList.Add(node);
+
 				// 목적지 도착했으면 바로 종료
 				if (node.Y == dest.Y && node.X == dest.X)
 					break;
@@ -268,6 +301,10 @@ namespace Server.Game
 				for (int i = 0; i < _deltaY.Length; i++)
 				{
 					Pos next = new Pos(node.Y + _deltaY[i], node.X + _deltaX[i]);
+
+					// 너무 멀면 스킵
+					if (Math.Abs(pos.Y - next.Y) + Math.Abs(pos.X - next.X) > maxDist)
+						continue;
 
 					// 유효 범위를 벗어났으면 스킵
 					// 벽으로 막혀서 갈 수 없으면 스킵
@@ -311,14 +348,35 @@ namespace Server.Game
 		{
 			List<Vector2Int> cells = new List<Vector2Int>();
 
-			Pos pos = dest;
-			while (parent[pos] != pos) 
+			if (parent.ContainsKey(dest) == false)
 			{
-				cells.Add(Pos2Cell(pos));
-				pos = parent[pos];
+				Pos best = new Pos();
+				int bestDist = Int32.MaxValue;
+
+				foreach (Pos pos in parent.Keys)
+				{
+					int dist = Math.Abs(dest.X - pos.X) + Math.Abs(dest.Y - pos.Y);
+					// 제일 우수한 후보를 뽑는다
+					if (dist < bestDist)
+					{
+						best = pos;
+						bestDist = dist;
+					}
+				}
+
+				dest = best;
 			}
-			cells.Add(Pos2Cell(pos));
-			cells.Reverse();
+
+			{
+				Pos pos = dest;
+				while (parent[pos] != pos)
+				{
+					cells.Add(Pos2Cell(pos));
+					pos = parent[pos];
+				}
+				cells.Add(Pos2Cell(pos));
+				cells.Reverse();
+			}
 
 			return cells;
 		}

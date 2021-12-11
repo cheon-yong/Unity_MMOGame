@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Server.Game
@@ -19,40 +20,44 @@ namespace Server.Game
 		public ObjectInfo Info { get; set; } = new ObjectInfo();
 		public PositionInfo PosInfo { get; private set; } = new PositionInfo();
 		public StatInfo Stat { get; private set; } = new StatInfo();
+
 		public virtual int TotalAttack { get { return Stat.Attack; } }
 		public virtual int TotalDefence { get { return 0; } }
+
 		public float Speed
 		{
 			get { return Stat.Speed; }
 			set { Stat.Speed = value; }
 		}
-		public int Hp
-        {
-			get { return Stat.Hp; }
-			set { Stat.Hp = Math.Clamp(value, 0, Stat.MaxHp) ; }
-        }
 
-		public CreatureState State
-        {
-			get { return PosInfo.State; }
-			set { PosInfo.State = value; }
-        }
+		public int Hp
+		{
+			get { return Stat.Hp; }
+			set { Stat.Hp = Math.Clamp(value, 0, Stat.MaxHp); }
+		}
 
 		public MoveDir Dir
-        {
+		{
 			get { return PosInfo.MoveDir; }
 			set { PosInfo.MoveDir = value; }
-        }
+		}
+
+		public CreatureState State
+		{
+			get { return PosInfo.State; }
+			set { PosInfo.State = value; }
+		}
 
 		public GameObject()
 		{
 			Info.PosInfo = PosInfo;
 			Info.StatInfo = Stat;
 		}
-		public virtual void Update()
-        {
 
-        }
+		public virtual void Update()
+		{
+
+		}
 
 		public Vector2Int CellPos
 		{
@@ -95,6 +100,7 @@ namespace Server.Game
 
 			return cellPos;
 		}
+
 		public static MoveDir GetDirFromVec(Vector2Int dir)
 		{
 			if (dir.x > 0)
@@ -112,7 +118,7 @@ namespace Server.Game
 			if (Room == null)
 				return;
 
-			damage = Math.Max((damage - TotalDefence), 0);
+			damage = Math.Max(damage - TotalDefence, 0);
 			Stat.Hp = Math.Max(Stat.Hp - damage, 0);
 
 			S_ChangeHp changePacket = new S_ChangeHp();
@@ -142,10 +148,8 @@ namespace Server.Game
 			Stat.Hp = Stat.MaxHp;
 			PosInfo.State = CreatureState.Idle;
 			PosInfo.MoveDir = MoveDir.Down;
-			PosInfo.PosX = 0;
-			PosInfo.PosY = 0;
 
-			room.EnterGame(this);
+			room.EnterGame(this, randomPos: true);
 		}
 
 		public virtual GameObject GetOwner()

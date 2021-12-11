@@ -105,39 +105,41 @@ class PacketHandler
 	{
 		Debug.Log("S_ConnectedHandler");
 		C_Login loginPacket = new C_Login();
-		loginPacket.UniqueId = SystemInfo.deviceUniqueIdentifier;
+
+		string path = Application.dataPath;
+		loginPacket.UniqueId = path.GetHashCode().ToString();
 		Managers.Network.Send(loginPacket);
 	}
 
 	// 로그인 OK + 캐릭터 목록
 	public static void S_LoginHandler(PacketSession session, IMessage packet)
-    {
+	{
 		S_Login loginPacket = (S_Login)packet;
 		Debug.Log($"LoginOk({loginPacket.LoginOk})");
 
 		// TODO : 로비 UI에서 캐릭터 보여주고, 선택할 수 있도록
 		if (loginPacket.Players == null || loginPacket.Players.Count == 0)
-        {
+		{
 			C_CreatePlayer createPacket = new C_CreatePlayer();
 			createPacket.Name = $"Player_{Random.Range(0, 10000).ToString("0000")}";
 			Managers.Network.Send(createPacket);
-        }
+		}
 		else
-        {
+		{
 			// 무조건 첫번째 로그인
 			LobbyPlayerInfo info = loginPacket.Players[0];
 			C_EnterGame enterGamePacket = new C_EnterGame();
 			enterGamePacket.Name = info.Name;
 			Managers.Network.Send(enterGamePacket);
-        }
-    }
-	
+		}
+	}
+
 	public static void S_CreatePlayerHandler(PacketSession session, IMessage packet)
-    {
+	{
 		S_CreatePlayer createOkPacket = (S_CreatePlayer)packet;
 
 		if (createOkPacket.Player == null)
-        {
+		{
 			C_CreatePlayer createPacket = new C_CreatePlayer();
 			createPacket.Name = $"Player_{Random.Range(0, 10000).ToString("0000")}";
 			Managers.Network.Send(createPacket);
@@ -148,24 +150,24 @@ class PacketHandler
 			enterGamePacket.Name = createOkPacket.Player.Name;
 			Managers.Network.Send(enterGamePacket);
 		}
-    }
+	}
 
 	public static void S_ItemListHandler(PacketSession session, IMessage packet)
-    {
+	{
 		S_ItemList itemList = (S_ItemList)packet;
 
 		Managers.Inven.Clear();
 
 		// 메모리에 아이템 정보 적용
 		foreach (ItemInfo itemInfo in itemList.Items)
-        {
+		{
 			Item item = Item.MakeItem(itemInfo);
 			Managers.Inven.Add(item);
-        }
+		}
 
 		if (Managers.Object.MyPlayer != null)
 			Managers.Object.MyPlayer.RefreshAdditionalStat();
-    }
+	}
 
 	public static void S_AddItemHandler(PacketSession session, IMessage packet)
 	{
@@ -178,7 +180,7 @@ class PacketHandler
 			Managers.Inven.Add(item);
 		}
 
-		Debug.Log("아이템 획득");
+		Debug.Log("아이템을 획득했습니다!");
 
 		UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 		gameSceneUI.InvenUI.RefreshUI();
@@ -187,6 +189,7 @@ class PacketHandler
 		if (Managers.Object.MyPlayer != null)
 			Managers.Object.MyPlayer.RefreshAdditionalStat();
 	}
+
 	public static void S_EquipItemHandler(PacketSession session, IMessage packet)
 	{
 		S_EquipItem equipItemOk = (S_EquipItem)packet;
@@ -197,7 +200,7 @@ class PacketHandler
 			return;
 
 		item.Equipped = equipItemOk.Equipped;
-		Debug.Log("아이템 착용 변경");
+		Debug.Log("아이템 착용 변경!");
 
 		UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 		gameSceneUI.InvenUI.RefreshUI();
@@ -206,11 +209,19 @@ class PacketHandler
 		if (Managers.Object.MyPlayer != null)
 			Managers.Object.MyPlayer.RefreshAdditionalStat();
 	}
+
 	public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
 	{
 		S_ChangeStat itemList = (S_ChangeStat)packet;
 
 		// TODO
+	}
+
+	public static void S_PingHandler(PacketSession session, IMessage packet)
+	{
+		C_Pong pongPacket = new C_Pong();
+		Debug.Log("[Server] PingCheck");
+		Managers.Network.Send(pongPacket);
 	}
 }
 

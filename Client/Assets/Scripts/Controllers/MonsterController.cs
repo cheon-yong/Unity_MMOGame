@@ -23,6 +23,7 @@ public class MonsterController : CreatureController
 		//Managers.Object.Remove(Id);
 		//Managers.Resource.Destroy(gameObject);
 	}
+
 	public override void UseSkill(int skillId)
 	{
 		if (skillId == 1)

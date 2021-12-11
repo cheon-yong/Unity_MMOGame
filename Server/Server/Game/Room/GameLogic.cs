@@ -12,14 +12,14 @@ namespace Server.Game
 		int _roomId = 1;
 
 		public void Update()
-        {
+		{
 			Flush();
 
 			foreach (GameRoom room in _rooms.Values)
-            {
+			{
 				room.Update();
-            }
-        }
+			}
+		}
 
 		public GameRoom Add(int mapId)
 		{

@@ -9,21 +9,17 @@ namespace Server.Game
 	{
 		public GameObject Owner { get; set; }
 
-
 		public override void Update()
 		{
 			if (Data == null || Data.projectile == null || Owner == null || Room == null)
 				return;
 
-
 			int tick = (int)(1000 / Data.projectile.speed);
 			Room.PushAfter(tick, Update);
 
 			Vector2Int destPos = GetFrontCellPos();
-			if (Room.Map.CanGo(destPos))
+			if (Room.Map.ApplyMove(this, destPos, collision: false))
 			{
-				CellPos = destPos;
-
 				S_Move movePacket = new S_Move();
 				movePacket.ObjectId = Id;
 				movePacket.PosInfo = PosInfo;

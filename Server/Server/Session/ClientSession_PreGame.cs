@@ -11,20 +11,21 @@ using System.Text;
 
 namespace Server
 {
-    public partial class ClientSession : PacketSession
-    {
-		public int AccountDbId { get; set; }
+	public partial class ClientSession : PacketSession
+	{
+		public int AccountDbId { get; private set; }
 		public List<LobbyPlayerInfo> LobbyPlayers { get; set; } = new List<LobbyPlayerInfo>();
-        public void HandleLogin(C_Login loginPacket)
-        {
-			// TODO : 보안체크
+
+		public void HandleLogin(C_Login loginPacket)
+		{
+			// TODO : 이런 저런 보안 체크
 			if (ServerState != PlayerServerState.ServerStateLogin)
 				return;
 
-			// TODO : 문제가 많다.
+			// TODO : 문제가 있긴 있다
 			// - 동시에 다른 사람이 같은 UniqueId을 보낸다면?
 			// - 악의적으로 여러번 보낸다면
-			// - 엉뚱한 타이멩에 이 패킷을 보낸다면?
+			// - 쌩뚱맞은 타이밍에 그냥 이 패킷을 보낸다면?
 
 			LobbyPlayers.Clear();
 
@@ -36,12 +37,12 @@ namespace Server
 
 				if (findAccount != null)
 				{
-					// AccountId를 메모리에 기억
+					// AccountDbId 메모리에 기억
 					AccountDbId = findAccount.AccountDbId;
 
 					S_Login loginOk = new S_Login() { LoginOk = 1 };
 					foreach (PlayerDb playerDb in findAccount.Players)
-                    {
+					{
 						LobbyPlayerInfo lobbyPlayer = new LobbyPlayerInfo()
 						{
 							PlayerDbId = playerDb.PlayerDbId,
@@ -51,18 +52,19 @@ namespace Server
 								Level = playerDb.Level,
 								Hp = playerDb.Hp,
 								MaxHp = playerDb.MaxHp,
-								Speed = playerDb.Speed,
 								Attack = playerDb.Attack,
-								TotalExp = playerDb.TotalExp,
+								Speed = playerDb.Speed,
+								TotalExp = playerDb.TotalExp
 							}
 						};
 
-						// 메모리에도 들고 있다 -> DB 접근 최소화
+						// 메모리에도 들고 있다
 						LobbyPlayers.Add(lobbyPlayer);
 
 						// 패킷에 넣어준다
 						loginOk.Players.Add(lobbyPlayer);
-                    }
+					}
+
 					Send(loginOk);
 					// 로비로 이동
 					ServerState = PlayerServerState.ServerStateLobby;
@@ -71,12 +73,13 @@ namespace Server
 				{
 					AccountDb newAccount = new AccountDb() { AccountName = loginPacket.UniqueId };
 					db.Accounts.Add(newAccount);
-					bool success = db.SaveChangesEx(); // TODO : Exception
+					bool success = db.SaveChangesEx();
 					if (success == false)
 						return;
 
-					// AccountId를 메모리에 기억
+					// AccountDbId 메모리에 기억
 					AccountDbId = newAccount.AccountDbId;
+
 					S_Login loginOk = new S_Login() { LoginOk = 1 };
 					Send(loginOk);
 					// 로비로 이동
@@ -85,12 +88,12 @@ namespace Server
 			}
 		}
 
-		public void HandleEnterGame (C_EnterGame enterGamepacket)
-        {
+		public void HandleEnterGame(C_EnterGame enterGamePacket)
+		{
 			if (ServerState != PlayerServerState.ServerStateLobby)
 				return;
 
-			LobbyPlayerInfo playerInfo = LobbyPlayers.Find(p => p.Name == enterGamepacket.Name);
+			LobbyPlayerInfo playerInfo = LobbyPlayers.Find(p => p.Name == enterGamePacket.Name);
 			if (playerInfo == null)
 				return;
 
@@ -107,27 +110,26 @@ namespace Server
 
 				S_ItemList itemListPacket = new S_ItemList();
 
-
 				// 아이템 목록을 갖고 온다
 				using (AppDbContext db = new AppDbContext())
-                {
+				{
 					List<ItemDb> items = db.Items
 						.Where(i => i.OwnerDbId == playerInfo.PlayerDbId)
 						.ToList();
 
 					foreach (ItemDb itemDb in items)
-                    {
+					{
 						Item item = Item.MakeItem(itemDb);
 						if (item != null)
-                        {
+						{
 							MyPlayer.Inven.Add(item);
 
 							ItemInfo info = new ItemInfo();
 							info.MergeFrom(item.Info);
 							itemListPacket.Items.Add(info);
-                        }
+						}
 					}
-                }
+				}
 
 				Send(itemListPacket);
 			}
@@ -137,28 +139,28 @@ namespace Server
 			GameLogic.Instance.Push(() =>
 			{
 				GameRoom room = GameLogic.Instance.Find(1);
-				room.Push(room.EnterGame, MyPlayer);
+				room.Push(room.EnterGame, MyPlayer, true);
 			});
 		}
 
-		public void HandleCreatePlayer (C_CreatePlayer createPacket)
-        {
-			// TODO : 보안체크
+		public void HandleCreatePlayer(C_CreatePlayer createPacket)
+		{
+			// TODO : 이런 저런 보안 체크
 			if (ServerState != PlayerServerState.ServerStateLobby)
 				return;
 
 			using (AppDbContext db = new AppDbContext())
-            {
+			{
 				PlayerDb findPlayer = db.Players
 					.Where(p => p.PlayerName == createPacket.Name).FirstOrDefault();
 
 				if (findPlayer != null)
-                {
+				{
 					// 이름이 겹친다
 					Send(new S_CreatePlayer());
-                }
+				}
 				else
-                {
+				{
 					// 1레벨 스탯 정보 추출
 					StatInfo stat = null;
 					DataManager.StatDict.TryGetValue(1, out stat);
@@ -177,7 +179,7 @@ namespace Server
 					};
 
 					db.Players.Add(newPlayerDb);
-					bool success = db.SaveChangesEx(); // TODO : Exception
+					bool success = db.SaveChangesEx();
 					if (success == false)
 						return;
 
@@ -191,22 +193,22 @@ namespace Server
 							Level = stat.Level,
 							Hp = stat.Hp,
 							MaxHp = stat.MaxHp,
-							Speed = stat.Speed,
 							Attack = stat.Attack,
-							TotalExp = stat.TotalExp,
+							Speed = stat.Speed,
+							TotalExp = 0
 						}
 					};
 
-					// 메모리에도 들고 있다 -> DB 접근 최소화
+					// 메모리에도 들고 있다
 					LobbyPlayers.Add(lobbyPlayer);
 
-					// 패킷에 넣어준다
+					// 클라에 전송
 					S_CreatePlayer newPlayer = new S_CreatePlayer() { Player = new LobbyPlayerInfo() };
 					newPlayer.Player.MergeFrom(lobbyPlayer);
 
 					Send(newPlayer);
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }

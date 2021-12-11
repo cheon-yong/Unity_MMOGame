@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package Protocol;
-import "google/protobuf/timestamp.proto";
 option csharp_namespace = "Google.Protobuf.Protocol";
 
 enum MsgId {
@@ -26,6 +25,8 @@ enum MsgId {
   C_EQUIP_ITEM = 18;
   S_EQUIP_ITEM = 19;
   S_CHANGE_STAT = 20;
+  S_PING = 21;
+  C_PONG = 22;
 }
 
 enum CreatureState {
@@ -85,6 +86,7 @@ enum ConsumableType {
    CONSUMABLE_TYPE_NONE = 0;
    CONSUMABLE_TYPE_POTION = 1;
 }
+
 
 message S_EnterGame {
   ObjectInfo player = 1;
@@ -173,6 +175,12 @@ message S_EquipItem {
 
 message S_ChangeStat {
   StatInfo statInfo = 1;
+}
+
+message S_Ping {
+}
+
+message C_Pong {
 }
 
 message LobbyPlayerInfo {

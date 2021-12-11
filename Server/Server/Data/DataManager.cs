@@ -17,7 +17,7 @@ namespace Server.Data
 		public static Dictionary<int, Data.Skill> SkillDict { get; private set; } = new Dictionary<int, Data.Skill>();
 		public static Dictionary<int, Data.ItemData> ItemDict { get; private set; } = new Dictionary<int, Data.ItemData>();
 		public static Dictionary<int, Data.MonsterData> MonsterDict { get; private set; } = new Dictionary<int, Data.MonsterData>();
-		
+
 		public static void LoadData()
 		{
 			StatDict = LoadJson<Data.StatData, int, StatInfo>("StatData").MakeDict();

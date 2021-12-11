@@ -15,15 +15,16 @@ namespace Server
 		object _lock = new object();
 
 		public List<ClientSession> GetSessions()
-        {
+		{
 			List<ClientSession> sessions = new List<ClientSession>();
+
 			lock (_lock)
-            {
+			{
 				sessions = _sessions.Values.ToList();
-            }
+			}
 
 			return sessions;
-        }
+		}
 
 		public ClientSession Generate()
 		{

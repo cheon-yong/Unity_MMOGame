@@ -62,8 +62,9 @@ public class CreatureController : BaseController
 		effect.GetComponent<Animator>().Play("START");
 		GameObject.Destroy(effect, 0.5f);
 	}
-	public virtual void UseSkill(int skillId)
-    {
 
-    }
+	public virtual void UseSkill(int skillId)
+	{
+
+	}
 }
