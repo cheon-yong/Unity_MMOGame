@@ -55,7 +55,8 @@ public class MyPlayerController : PlayerController
 		}
 	}
 
-	Coroutine _coSkillCooltime;
+
+    Coroutine _coSkillCooltime;
 	IEnumerator CoInputCooltime(float time)
 	{
 		yield return new WaitForSeconds(time);

@@ -53,13 +53,6 @@ public class BaseController : MonoBehaviour
 			Dir = value.MoveDir;
 		}
 	}
-
-	public void SyncPos()
-	{
-		Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
-		transform.position = destPos;
-	}
-
 	public Vector3Int CellPos
 	{
 		get
@@ -77,6 +70,14 @@ public class BaseController : MonoBehaviour
 			_updated = true;
 		}
 	}
+
+	public void SyncPos()
+	{
+		Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
+		transform.position = destPos;
+	}
+
+	
 
 	protected Animator _animator;
 	protected SpriteRenderer _sprite;

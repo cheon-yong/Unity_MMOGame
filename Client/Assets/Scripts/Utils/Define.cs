@@ -12,6 +12,13 @@ public class Define
         Game,
     }
 
+    public enum GameState
+    {
+        Ready,
+        Playing,
+        Finish,
+    }
+
     public enum Sound
     {
         Bgm,

@@ -1,0 +1,807 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Comment CommentText="CORE&#xD;&#xA;">
+    <Position X="7.243" Y="14.549" Height="0.367" Width="0.766" />
+  </Comment>
+  <Comment CommentText="Contents">
+    <Position X="7.29" Y="17.195" Height="0.367" Width="0.766" />
+  </Comment>
+  <Class Name="HpBar" Collapsed="true">
+    <Position X="23.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Contents\HpBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQQAAAAAABgAAAAAGAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Contents\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon" Collapsed="true">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Contents\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Armor" Collapsed="true">
+    <Position X="9.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAACAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Contents\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Consumable" Collapsed="true">
+    <Position X="11.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Contents\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrowController" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Controllers\ArrowController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseController" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAABAGggAAAhAAAACAABAAKAAIAAIANCBAACcAA=</HashCode>
+      <FileName>Assets\Scripts\Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreatureController" Collapsed="true">
+    <Position X="3.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAQAAAAAAAAkAAAAACAAAAAAAICCAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Controllers\CreatureController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonsterController" Collapsed="true">
+    <Position X="2.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAABCCAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Controllers\MonsterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyPlayerController" Collapsed="true">
+    <Position X="5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAlAAgAAABAQAAIAQAAAABAAAAABBCAAAAAAE=</HashCode>
+      <FileName>Assets\Scripts\Controllers\MyPlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerController" Collapsed="true">
+    <Position X="5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAgAAQAAABAAAAEAAAAAIABAAAAQACCAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Controllers\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InventoryManager" Collapsed="true">
+    <Position X="3.25" Y="18" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAACABAAAAAAAAAAAAIAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\InventoryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapManager" Collapsed="true">
+    <Position X="9" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAwACAAAAAAAAAAAAEAgAAAAIAgAAAABRADwAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\MapManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkManager" Collapsed="true">
+    <Position X="7.25" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAAAkAAAAAAAAAAAAAgAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\NetworkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectManager" Collapsed="true">
+    <Position X="10.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAEABAAJAAAAAAJAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\ObjectManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebManager" Collapsed="true">
+    <Position X="5.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\WebManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataManager" Collapsed="true">
+    <Position X="3.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAACAAAAAAAAAAQAAAAAAAAAAAAACAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Poolable" Collapsed="true">
+    <Position X="23.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\Poolable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoolManager" Collapsed="true">
+    <Position X="5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAQAAAAAAAAAAAAAACEAIAAAAACAABACAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\PoolManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourceManager" Collapsed="true">
+    <Position X="6.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\ResourceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneManagerEx" Collapsed="true">
+    <Position X="8.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAICAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\SceneManagerEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="10.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAgAACAABAAgA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="12" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAECgAAAACAAAAAAAAAAAIAACgAAAAAAAABBACA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Managers">
+    <Position X="1" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAJDAEQAIgggAAAIAAAAAACBAAREICAgRAUAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Managers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacketManager" Collapsed="true">
+    <Position X="7.25" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAEAAAAAAAAAEBAAAAAABBAAAAQAAAAAAKAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\ClientPacketManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacketHandler" Collapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAQUAAACAAAIAAAAQAAAAAAAIAAAAAAwBIAgABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\PacketHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacketMessage" Collapsed="true">
+    <Position X="20.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\PacketQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacketQueue" Collapsed="true">
+    <Position X="22" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAgAAAAAAAAAACAAAAAQAAAAAAASAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\PacketQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerSession" Collapsed="true">
+    <Position X="7.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAEABAAABAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\ServerSession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseScene" Collapsed="true">
+    <Position X="10" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAABAAEA=</HashCode>
+      <FileName>Assets\Scripts\Scenes\BaseScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameScene" Collapsed="true">
+    <Position X="8.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgACAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scenes\GameScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginScene" Collapsed="true">
+    <Position X="11" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgACAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scenes\LoginScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Popup" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Popup\UI_Popup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_SelectServerPopup" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABCAAAAAAAIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Popup\UI_SelectServerPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_SelectServerPopup_Item" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAACAEAAAAg=</HashCode>
+      <FileName>Assets\Scripts\UI\Popup\UI_SelectServerPopup_Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_GameScene" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAIAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_GameScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Inventory" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Inventory_Item" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAQQAAAAAADgAAACgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_Inventory_Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_LoginScene" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_LoginScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Scene" Collapsed="true">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Stat" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Scene\UI_Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Base" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQAAIABIAAIAAAAQAAAAAAAAAAACAAAAQEA=</HashCode>
+      <FileName>Assets\Scripts\UI\UI_Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_EventHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAgAAAAAAAABAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\UI_EventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Define" Collapsed="true">
+    <Position X="20.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Utils\Define.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Extension" Collapsed="true">
+    <Position X="22" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAoAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Utils\Extension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PriorityQueue&lt;T&gt;" Collapsed="true">
+    <Position X="29" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAACAAAAAABAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Utils\PriorityQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Util" Collapsed="true">
+    <Position X="18.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Utils\Util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreateAccountPacketReq" Collapsed="true">
+    <Position X="30.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Web\WebPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreateAccountPacketRes" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Web\WebPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginAccountPacketReq" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Web\WebPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerInfo" Collapsed="true">
+    <Position X="20.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAQACAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Web\WebPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginAccountPacketRes" Collapsed="true">
+    <Position X="18.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAQAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Web\WebPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Skill" Collapsed="true">
+    <Position X="22" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAgAAAAAAAAAAAACAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.ProjectileInfo" Collapsed="true">
+    <Position X="30.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAIAAAAEAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.SkillData" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Data.ItemData" Collapsed="true">
+    <Position X="3" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAACAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.WeaponData" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.ArmorData" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.ConsumableData" Collapsed="true">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.ItemLoader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAEBAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Data.MonsterData" Collapsed="true">
+    <Position X="23.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAEAgAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.MonsterLoader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\Data.Contents.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.ProtocolReflection" Collapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_EnterGame" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAJAgAAAAAQAAAhA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_LeaveGame" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Spawn" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAgAIAAAAEEAAIEgAAAAAAgAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Despawn" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAggAAACAEAABCYEgAAAAAAAAEEAAIAggAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_Move" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAUAAACYEwAAAAAAAAEGAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Move" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAACAUAAACYEwgAAAAAAAEHAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_Skill" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEggAAAAAAAEEAAIAgAAAAAMAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Skill" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAACAEAAACYEggAAAAAAAEFAAIAgAAAAAMAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_ChangeHp" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAACAEAAACYEggAAAAAAIEFAAIAgAABAAAAAQBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Die" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAACAEAAACYEggAAAAAAAEFCAIIgEAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Connected" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_Login" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAIACAEAAAGYEgAAAAAAAAEEAAIAgAAAAAAAAQBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Login" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQACAEAAQCYEkAAAgAAAAEEgAIBiAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_CreatePlayer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAwAAEEAAIAgAAAAAAAAIBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_CreatePlayer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAJAgAAAAAQAAAhA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_EnterGame" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAwAAEEAAIAgAAAAAAAAIBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_ItemList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAADAEAACCYEgAgAAAAAQEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_AddItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAADAEAACCYEgAgAAAAAQEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_EquipItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAQCYkgBAAAAAQAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_EquipItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAQCYkgBAAAAAQAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_ChangeStat" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAIAgAAIAAAASABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.S_Ping" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.C_Pong" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAEAAACYEgAAAAAAAAEEAAIAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.LobbyPlayerInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACgEACQCYEgAAAAAwAAEEAAIAgAAIAAAASIBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.ObjectInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAACAUAAACYEwgAAAAwAAEHAAIAgAAIAAAASIBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.PositionInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgACAKEEAAHCYEwAAAwAAAAEEAAIAkAAAABAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.StatInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAgABICEEAAACYEgAAAAAABIMEAAYAhAADAAgAAQBA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.SkillInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAkAAACYEgAAAAAAAAEEAAYAgAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Google.Protobuf.Protocol.ItemInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACCEAAQCckhBAAAAQQAEECAMBgAAAAAAACAhA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ServerCore.Connector" Collapsed="true">
+    <Position X="29" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAQAAIAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ServerCore\Connector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerCore.RecvBuffer" Collapsed="true">
+    <Position X="18.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAQAAAgAAAAEAEAAAAAgAAAAAAAAAACAAAQAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\ServerCore\RecvBuffer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerCore.PacketSession" Collapsed="true">
+    <Position X="7.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAABAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ServerCore\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerCore.Session" Collapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEaAAAKABCAAAAAgAFAAAAABgAAAAIIBAAAAQABBAAA=</HashCode>
+      <FileName>Assets\Scripts\ServerCore\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Pos" Collapsed="true">
+    <Position X="16.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\MapManager.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PQNode" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAGAAAYAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Contents\MapManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Interface Name="ILoader&lt;Key, Value&gt;" Collapsed="true">
+    <Position X="16.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\Core\DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Google.Protobuf.Protocol.MsgId" Collapsed="true">
+    <Position X="27.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAkAAAAAAAAAEBAAEgMCAAAAAAACaAJAAAgCSAIAAAE=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.CreatureState" Collapsed="true">
+    <Position X="20.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.MoveDir" Collapsed="true">
+    <Position X="25.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.GameObjectType" Collapsed="true">
+    <Position X="22" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQEAIAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.SkillType" Collapsed="true">
+    <Position X="30.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.PlayerServerState" Collapsed="true">
+    <Position X="29" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAIAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.ItemType" Collapsed="true">
+    <Position X="23.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.WeaponType" Collapsed="true">
+    <Position X="16.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.ArmorType" Collapsed="true">
+    <Position X="16.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAEAAAI=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Google.Protobuf.Protocol.ConsumableType" Collapsed="true">
+    <Position X="18.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Packet\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

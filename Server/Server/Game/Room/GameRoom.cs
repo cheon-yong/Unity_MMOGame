@@ -10,7 +10,7 @@ namespace Server.Game
 {
 	public partial class GameRoom : JobSerializer
 	{
-		public const int VisionCells = 5;
+		public const int VisionCells = 6;
 
 		public int RoomId { get; set; }
 
@@ -65,7 +65,7 @@ namespace Server.Game
 			}
 
 			// TEMP
-			for (int i = 0; i < 500; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				Monster monster = ObjectManager.Instance.Add<Monster>();
 				monster.Init(1);
@@ -267,11 +267,8 @@ namespace Server.Game
         }
 
 
-		// ㅁㅁㅁㅁㅁㅁ
-		// ㅁㅁㅁㅁㅁㅁ
-		// ㅁㅁㅁㅁㅁㅁ
-		// ㅁㅁㅁㅁㅁㅁ
-		// ㅁㅁㅁㅁㅁㅁ
+		
+
 		public List<Zone> GetAdjacentZones(Vector2Int cellPos, int range = GameRoom.VisionCells)
 		{
 			HashSet<Zone> zones = new HashSet<Zone>();
