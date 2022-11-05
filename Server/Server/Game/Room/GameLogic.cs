@@ -8,22 +8,22 @@ namespace Server.Game
 	{
 		public static GameLogic Instance { get; } = new GameLogic();
 
-		Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
+		Dictionary<int, PveRoom> _rooms = new Dictionary<int, PveRoom>();
 		int _roomId = 1;
 
 		public void Update()
 		{
 			Flush();
 
-			foreach (GameRoom room in _rooms.Values)
+			foreach (PveRoom room in _rooms.Values)
 			{
 				room.Update();
 			}
 		}
 
-		public GameRoom Add(int mapId)
+		public PveRoom Add(int mapId)
 		{
-			GameRoom gameRoom = new GameRoom();
+			PveRoom gameRoom = new PveRoom();
 			gameRoom.Push(gameRoom.Init, mapId, 10);
 
 			gameRoom.RoomId = _roomId;
@@ -38,9 +38,9 @@ namespace Server.Game
 			return _rooms.Remove(roomId);
 		}
 
-		public GameRoom Find(int roomId)
+		public PveRoom Find(int roomId)
 		{
-			GameRoom room = null;
+			PveRoom room = null;
 			if (_rooms.TryGetValue(roomId, out room))
 				return room;
 

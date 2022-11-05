@@ -138,7 +138,7 @@ namespace Server
 
 			GameLogic.Instance.Push(() =>
 			{
-				GameRoom room = GameLogic.Instance.Find(1);
+				PveRoom room = GameLogic.Instance.Find(1);
 				room.Push(room.EnterGame, MyPlayer, true);
 			});
 		}

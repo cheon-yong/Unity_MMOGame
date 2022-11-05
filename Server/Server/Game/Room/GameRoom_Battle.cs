@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Server.Game
 {
-	public partial class GameRoom : JobSerializer
+    public partial class GameRoom : JobSerializer
 	{
 		public void HandleMove(Player player, C_Move movePacket)
 		{
@@ -87,6 +87,5 @@ namespace Server.Game
 					break;
 			}
 		}
-
 	}
 }

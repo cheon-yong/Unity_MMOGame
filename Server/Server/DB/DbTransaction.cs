@@ -13,7 +13,7 @@ namespace Server.DB
 		public static DbTransaction Instance { get; } = new DbTransaction();
 
 		// Me (GameRoom) -> You (Db) -> Me (GameRoom)
-		public static void SavePlayerStatus_AllInOne(Player player, GameRoom room)
+		public static void SavePlayerStatus_AllInOne(Player player, PveRoom room)
 		{
 			if (player == null || room == null)
 				return;

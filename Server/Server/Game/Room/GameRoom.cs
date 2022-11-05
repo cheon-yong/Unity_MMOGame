@@ -8,15 +8,15 @@ using System.Text;
 
 namespace Server.Game
 {
-	public partial class GameRoom : JobSerializer
-	{
-		public const int VisionCells = 6;
-
+    public partial class GameRoom : JobSerializer
+    {
 		public int RoomId { get; set; }
 
-		Dictionary<int, Player> _players = new Dictionary<int, Player>();
-		Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
-		Dictionary<int, Projectile> _projectiles = new Dictionary<int, Projectile>();
+		public const int VisionCells = 6;
+
+		protected Dictionary<int, Player> _players = new Dictionary<int, Player>();
+		protected Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
+		protected Dictionary<int, Projectile> _projectiles = new Dictionary<int, Projectile>();
 
 		public Zone[,] Zones { get; private set; }
 		public int ZoneCells { get; private set; }
@@ -35,7 +35,7 @@ namespace Server.Game
 		}
 
 		public Zone GetZone(int indexY, int indexX)
-        {
+		{
 			if (indexX < 0 || indexX >= Zones.GetLength(1))
 				return null;
 			if (indexY < 0 || indexY >= Zones.GetLength(0))
@@ -43,16 +43,15 @@ namespace Server.Game
 
 			return Zones[indexY, indexX];
 		}
-
 		public void Init(int mapId, int zoneCells)
 		{
 			Map.LoadMap(mapId);
 
 			// Zone
 			ZoneCells = zoneCells; // 10
-			// 1~10 칸 = 1존
-			// 11~20칸 = 2존
-			// 21~30칸 = 3존
+								   // 1~10 칸 = 1존
+								   // 11~20칸 = 2존
+								   // 21~30칸 = 3존
 			int countY = (Map.SizeY + zoneCells - 1) / zoneCells;
 			int countX = (Map.SizeX + zoneCells - 1) / zoneCells;
 			Zones = new Zone[countY, countX];
@@ -78,9 +77,9 @@ namespace Server.Game
 		{
 			Flush();
 		}
-
+		
 		Random _rand = new Random();
-		public void EnterGame(GameObject gameObject, bool randomPos)
+		public virtual void EnterGame(GameObject gameObject, bool randomPos)
 		{
 			if (gameObject == null)
 				return;
@@ -221,7 +220,7 @@ namespace Server.Game
 
 		// 살짝 부담스러운 함수
 		public Player FindClosestPlayer(Vector2Int pos, int range)
-        {
+		{
 			List<Player> players = GetAdjacentPlayers(pos, range);
 
 			players.Sort((left, right) =>
@@ -232,7 +231,7 @@ namespace Server.Game
 			});
 
 			foreach (Player player in players)
-            {
+			{
 				List<Vector2Int> path = Map.FindPath(pos, player.CellPos, checkObjects: true);
 				if (path.Count < 2 || path.Count > range)
 					continue;
@@ -241,7 +240,7 @@ namespace Server.Game
 			}
 
 			return null;
-        }
+		}
 
 		public void Broadcast(Vector2Int pos, IMessage packet)
 		{
@@ -251,9 +250,9 @@ namespace Server.Game
 			{
 				int dx = p.CellPos.x - pos.x;
 				int dy = p.CellPos.y - pos.y;
-				if (Math.Abs(dx) > GameRoom.VisionCells)
+				if (Math.Abs(dx) > PveRoom.VisionCells)
 					continue;
-				if (Math.Abs(dy) > GameRoom.VisionCells)
+				if (Math.Abs(dy) > PveRoom.VisionCells)
 					continue;
 
 				p.Session.Send(packet);
@@ -261,15 +260,15 @@ namespace Server.Game
 		}
 
 		public List<Player> GetAdjacentPlayers(Vector2Int pos, int range)
-        {
+		{
 			List<Zone> zones = GetAdjacentZones(pos, range);
 			return zones.SelectMany(z => z.Players).ToList();
-        }
+		}
 
 
-		
 
-		public List<Zone> GetAdjacentZones(Vector2Int cellPos, int range = GameRoom.VisionCells)
+
+		public List<Zone> GetAdjacentZones(Vector2Int cellPos, int range = PveRoom.VisionCells)
 		{
 			HashSet<Zone> zones = new HashSet<Zone>();
 
@@ -291,16 +290,16 @@ namespace Server.Game
 			int maxIndexX = (rightBot.x - Map.MinX) / ZoneCells;
 
 			for (int x = minIndexX; x <= maxIndexX; x++)
-            {
+			{
 				for (int y = minIndexY; y <= minIndexY; y++)
-                {
+				{
 					Zone zone = GetZone(y, x);
 					if (zone == null)
 						continue;
 
 					zones.Add(zone);
-                }
-            }
+				}
+			}
 
 			int[] delta = new int[2] { -range, +range };
 			foreach (int dy in delta)
