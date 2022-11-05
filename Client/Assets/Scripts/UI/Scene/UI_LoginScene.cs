@@ -44,6 +44,17 @@ public class UI_LoginScene : UI_Scene
         Managers.Web.SendPostRequest<CreateAccountPacketRes>("account/create", packet, (res) =>
         {
             Debug.Log(res.CreateOk);
+            if (res.CreateOk)
+            {
+                var popup = Managers.UI.ShowPopupUI<UI_NoticePopup>();
+                popup.SetNotice(Define.Notice.CreateAccount);
+            }
+            else
+            {
+                var popup = Managers.UI.ShowPopupUI<UI_NoticePopup>();
+                popup.SetError(Define.Error.CreateAccount);
+            }
+
 
             Get<GameObject>((int)GameObjects.AccountName).GetComponent<InputField>().text = "";
             Get<GameObject>((int)GameObjects.Password).GetComponent<InputField>().text = "";
@@ -75,6 +86,11 @@ public class UI_LoginScene : UI_Scene
 
                 UI_SelectServerPopup popup = Managers.UI.ShowPopupUI<UI_SelectServerPopup>();
                 popup.SetServers(res.ServerList);
+            }
+            else
+            {
+                var popup = Managers.UI.ShowPopupUI<UI_NoticePopup>();
+                popup.SetError(Define.Error.Login);
             }
         });
     }

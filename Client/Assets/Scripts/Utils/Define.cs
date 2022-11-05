@@ -31,4 +31,15 @@ public class Define
         Click,
         Drag,
     }
+
+    public enum Notice
+    {
+        CreateAccount,
+    }
+
+    public enum Error
+    {
+        Login,
+        CreateAccount,
+    }
 }
