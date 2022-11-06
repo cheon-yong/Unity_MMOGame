@@ -100,6 +100,21 @@ public class MyPlayerController : PlayerController
 				statUI.RefreshUI();
 			}
 		}
+		else if (Input.GetKeyDown(KeyCode.R))
+		{
+			UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+			UI_RoomList roomList = gameSceneUI.roomList;
+
+			if (roomList.gameObject.activeSelf)
+			{
+				roomList.gameObject.SetActive(false);
+			}
+			else
+			{
+				roomList.gameObject.SetActive(true);
+				//roomList.RefreshUI();
+			}
+		}
 	}
 
 	// 키보드 입력

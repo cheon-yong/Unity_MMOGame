@@ -29,6 +29,8 @@ enum MsgId {
   C_PONG = 22;
   C_REQUEST_ROOMS = 23;
   S_RESPONE_ROOMS = 24;
+  C_CHANGE_ROOM = 25;
+  S_CHANGE_ROOM = 26;
 }
 
 enum CreatureState {
@@ -154,6 +156,7 @@ message S_CreatePlayer {
 
 message C_EnterGame {
   string name = 1;
+  int32 roomNumber = 2;
 }
 
 message S_ItemList {
@@ -192,6 +195,15 @@ message S_ResponeRooms {
   repeated RoomInfo rooms = 1;	
 }
 
+message C_ChangeRoom {
+  int32 playerId = 1;
+  int32 targetRoom = 2;
+}
+
+message S_ChangeRoom {
+  int32 targetRoom = 1;
+  bool Success = 2;
+}
 message LobbyPlayerInfo {
   int32 playerDbId = 1;
   string name = 2;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_NoticePopup : UI_Popup
@@ -24,6 +25,9 @@ public class UI_NoticePopup : UI_Popup
 
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
+
+        GetButton((int)Buttons.Confirm).gameObject.BindEvent(OnClickButton);
+        GetButton((int)Buttons.Background).gameObject.BindEvent(OnClickButton);
     }
 
     public void SetError(Define.Error error)
@@ -60,5 +64,10 @@ public class UI_NoticePopup : UI_Popup
         GetText((int)Texts.TitleText).text = title;
         GetText((int)Texts.ErrorText).text = error;
         GetText((int)Texts.ButtonText).text = button;
+    }
+
+    void OnClickButton(PointerEventData evt)
+    {
+        Managers.UI.ClosePopupUI();
     }
 }

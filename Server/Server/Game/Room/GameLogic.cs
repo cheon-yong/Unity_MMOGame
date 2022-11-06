@@ -9,7 +9,6 @@ namespace Server.Game
 		public static GameLogic Instance { get; } = new GameLogic();
 
 		Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
-		//Dictionary<int, PvpRoom> _pvpRooms = new Dictionary<int, PvpRoom>();
 
 		int _roomId = 1;
 
@@ -17,7 +16,7 @@ namespace Server.Game
 		{
 			Flush();
 
-			foreach (PveRoom room in _rooms.Values)
+			foreach (GameRoom room in _rooms.Values)
 			{
 				room.Update();
 			}

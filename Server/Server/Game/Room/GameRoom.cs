@@ -66,6 +66,9 @@ namespace Server.Game
 			}
 
 			// TEMP
+			if (Pvp)
+				return;
+
 			for (int i = 0; i < 5; i++)
 			{
 				Monster monster = ObjectManager.Instance.Add<Monster>();

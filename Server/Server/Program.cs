@@ -110,6 +110,7 @@ namespace Server
 			GameLogic.Instance.Push(() =>
 			{
 				GameLogic.Instance.Add(1);
+				GameLogic.Instance.Add(2, true);
 			});
 
 			// DNS (Domain Name System)

@@ -130,6 +130,8 @@ class PacketHandler
 			LobbyPlayerInfo info = loginPacket.Players[0];
 			C_EnterGame enterGamePacket = new C_EnterGame();
 			enterGamePacket.Name = info.Name;
+			// 일단 고정
+			enterGamePacket.RoomNumber = 1;
 			Managers.Network.Send(enterGamePacket);
 		}
 	}
@@ -225,8 +227,17 @@ class PacketHandler
 	}
 
 	public static void S_ResponeRoomsHandler(PacketSession session, IMessage packet)
-	{ 
+	{
+		S_ResponeRooms response = (S_ResponeRooms)packet;
 
+		UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+		gameSceneUI.roomList.Clear();
+		foreach (var room in response.Rooms)
+        {
+			gameSceneUI.roomList.roomInfos.Add(room);
+		}
+		gameSceneUI.roomList.RefreshUI();
+		
 	}
 }
 
