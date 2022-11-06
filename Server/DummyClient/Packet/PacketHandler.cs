@@ -126,6 +126,11 @@ class PacketHandler
 	{
 		C_Pong pongPacket = new C_Pong();
 	}
+
+	public static void S_ResponeRoomsHandler(PacketSession session, IMessage packet)
+    {
+		S_ResponeRooms roomInfos = (S_ResponeRooms)packet;
+    }
 }
 
 

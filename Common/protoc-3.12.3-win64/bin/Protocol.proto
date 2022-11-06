@@ -27,6 +27,8 @@ enum MsgId {
   S_CHANGE_STAT = 20;
   S_PING = 21;
   C_PONG = 22;
+  C_REQUEST_ROOMS = 23;
+  S_RESPONE_ROOMS = 24;
 }
 
 enum CreatureState {
@@ -86,7 +88,6 @@ enum ConsumableType {
    CONSUMABLE_TYPE_NONE = 0;
    CONSUMABLE_TYPE_POTION = 1;
 }
-
 
 message S_EnterGame {
   ObjectInfo player = 1;
@@ -183,6 +184,14 @@ message S_Ping {
 message C_Pong {
 }
 
+message C_RequestRooms {
+
+}
+
+message S_ResponeRooms {
+  repeated RoomInfo rooms = 1;	
+}
+
 message LobbyPlayerInfo {
   int32 playerDbId = 1;
   string name = 2;
@@ -222,4 +231,10 @@ message ItemInfo {
   int32 count = 3;
   int32 slot = 4;
   bool equipped = 5;
+}
+
+message RoomInfo {
+  int32 roomId = 1;
+  int32 mapId = 2;
+  bool pvp = 3;
 }

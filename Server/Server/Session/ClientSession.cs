@@ -121,7 +121,7 @@ namespace Server
 				if (MyPlayer == null)
 					return;
 
-				PveRoom room = GameLogic.Instance.Find(1);
+				GameRoom room = GameLogic.Instance.Find(1);
 				room.Push(room.LeaveGame, MyPlayer.Info.ObjectId);
 			});
 

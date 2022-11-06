@@ -138,7 +138,7 @@ namespace Server
 
 			GameLogic.Instance.Push(() =>
 			{
-				PveRoom room = GameLogic.Instance.Find(1);
+				GameRoom room = GameLogic.Instance.Find(1);
 				room.Push(room.EnterGame, MyPlayer, true);
 			});
 		}
@@ -209,6 +209,22 @@ namespace Server
 					Send(newPlayer);
 				}
 			}
+		}
+
+		public void HandleRequestRoom(C_RequestRooms requestPacket)
+        {
+			List<GameRoom> rooms = GameLogic.Instance.GetGameRooms();
+			S_ResponeRooms responsePacket = new S_ResponeRooms();
+			foreach(GameRoom room in rooms)
+			{
+				RoomInfo info = new RoomInfo();
+				info.RoomId = room.RoomId;
+				info.MapId = room.Map.MapId;
+				info.Pvp = room.Pvp;
+				responsePacket.Rooms.Add(info);
+			}
+
+			Send(responsePacket);
 		}
 	}
 }

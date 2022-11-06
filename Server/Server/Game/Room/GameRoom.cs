@@ -23,6 +23,8 @@ namespace Server.Game
 
 		public Map Map { get; private set; } = new Map();
 
+		public bool Pvp { get; set; } = false;
+
 		// ㅁㅁㅁ
 		// ㅁㅁㅁ
 		// ㅁㅁㅁ

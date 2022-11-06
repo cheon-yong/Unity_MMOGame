@@ -223,6 +223,11 @@ class PacketHandler
 		Debug.Log("[Server] PingCheck");
 		Managers.Network.Send(pongPacket);
 	}
+
+	public static void S_ResponeRoomsHandler(PacketSession session, IMessage packet)
+	{ 
+
+	}
 }
 
 

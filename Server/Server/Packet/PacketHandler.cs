@@ -66,7 +66,7 @@ class PacketHandler
 		clientSession.HandleCreatePlayer(createPlayerPacket);
 	}
 
-	public static void C_EquipItemHandler(PacketSession session, IMessage packet)
+    public static void C_EquipItemHandler(PacketSession session, IMessage packet)
 	{
 		C_EquipItem equipPacket = (C_EquipItem)packet;
 		ClientSession clientSession = (ClientSession)session;
@@ -86,5 +86,13 @@ class PacketHandler
 	{
 		ClientSession clientSession = (ClientSession)session;
 		clientSession.HandlePong();
+	}
+
+
+	public static void C_RequestRoomsHandler(PacketSession session, IMessage packet)
+	{
+		C_RequestRooms requestPacket = (C_RequestRooms)packet;
+		ClientSession clientSession = (ClientSession)session;
+		clientSession.HandleRequestRoom(requestPacket);
 	}
 }
