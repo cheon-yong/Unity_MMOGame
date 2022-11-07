@@ -11,11 +11,23 @@ class PacketHandler
 	{
 		S_EnterGame enterGamePacket = packet as S_EnterGame;
 		Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
+		Managers.Map.LoadMap(enterGamePacket.TargetRoom);
 	}
 
 	public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
 	{
 		S_LeaveGame leaveGameHandler = packet as S_LeaveGame;
+		
+		if (leaveGameHandler.Change)
+        {
+			Debug.Log("Room Change");
+			Debug.Log($"Target Room : {leaveGameHandler.TargetRoom}");
+			
+			C_EnterGame enterGame = new C_EnterGame();
+			enterGame.Name = Managers.Object.MyPlayer.name;
+			enterGame.RoomNumber = leaveGameHandler.TargetRoom;
+			Managers.Network.Send(enterGame);
+        }
 		Managers.Object.Clear();
 	}
 
@@ -122,6 +134,7 @@ class PacketHandler
 		{
 			C_CreatePlayer createPacket = new C_CreatePlayer();
 			createPacket.Name = $"Player_{Random.Range(0, 10000).ToString("0000")}";
+			
 			Managers.Network.Send(createPacket);
 		}
 		else
@@ -150,6 +163,7 @@ class PacketHandler
 		{
 			C_EnterGame enterGamePacket = new C_EnterGame();
 			enterGamePacket.Name = createOkPacket.Player.Name;
+			enterGamePacket.RoomNumber = 1;
 			Managers.Network.Send(enterGamePacket);
 		}
 	}
@@ -236,8 +250,7 @@ class PacketHandler
         {
 			gameSceneUI.roomList.roomInfos.Add(room);
 		}
-		gameSceneUI.roomList.RefreshUI();
-		
+		gameSceneUI.roomList.RefreshUI();	
 	}
 }
 

@@ -95,11 +95,12 @@ class PacketHandler
 		ClientSession clientSession = (ClientSession)session;
 		clientSession.HandleRequestRoom(requestPacket);
 	}
-
-	public static void C_ChangeRoomHandler(PacketSession session, IMessage packet)
-    {
-		C_ChangeRoom changePacket = (C_ChangeRoom)packet;
+	public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
+	{
+		C_LeaveGame leavePacket = (C_LeaveGame)packet;
 		ClientSession clientSession = (ClientSession)session;
-		clientSession.HandleChangeRoom(changePacket);
+		clientSession.HandleLeaveGame(leavePacket);
 	}
+	
+
 }

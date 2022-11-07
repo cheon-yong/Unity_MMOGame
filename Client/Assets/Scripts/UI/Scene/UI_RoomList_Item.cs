@@ -23,11 +23,12 @@ public class UI_RoomList_Item : UI_Base
 		gameObject.BindEvent((e) =>
 		{
 			Debug.Log("Click Room");
-
-
-			C_EnterGame enterPacket = new C_EnterGame();
-			enterPacket.RoomNumber = roomId;
-			Managers.Network.Send(enterPacket);
+			Debug.Log($"Target Room Id = {roomId}");
+			C_LeaveGame leavePacket = new C_LeaveGame();
+			leavePacket.PlayerId = Managers.Object.MyPlayer.Id;
+			leavePacket.TargetRoom = roomId;
+			leavePacket.Change = true;
+			Managers.Network.Send(leavePacket);
 		});
 	}
 

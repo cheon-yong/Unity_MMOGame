@@ -91,11 +91,19 @@ namespace Server
 		public void HandleEnterGame(C_EnterGame enterGamePacket)
 		{
 			if (ServerState != PlayerServerState.ServerStateLobby)
+            {
+				Console.WriteLine("Not Lobby");
 				return;
+			}
+				
 
 			LobbyPlayerInfo playerInfo = LobbyPlayers.Find(p => p.Name == enterGamePacket.Name);
 			if (playerInfo == null)
+            {
+				Console.WriteLine("Player is null");
 				return;
+			}
+				
 
 			MyPlayer = ObjectManager.Instance.Add<Player>();
 			{
@@ -136,6 +144,7 @@ namespace Server
 
 			ServerState = PlayerServerState.ServerStateGame;
 
+			Console.WriteLine($"Room Enter {MyPlayer.Id}, {enterGamePacket.RoomNumber}");
 			GameLogic.Instance.Push(() =>
 			{
 				GameRoom room = GameLogic.Instance.Find(enterGamePacket.RoomNumber);
@@ -226,25 +235,24 @@ namespace Server
 
 			Send(responsePacket);
 		}
-
-		public void HandleChangeRoom(C_ChangeRoom changePacket)
-		{
-			Player myPlayer = ObjectManager.Instance.Find(changePacket.PlayerId);
+		public void HandleLeaveGame(C_LeaveGame leavePacket)
+        {
+			Console.WriteLine($"Leave Game {leavePacket.Change}");
 			
 			GameLogic.Instance.Push(() =>
 			{
+				GameRoom room = GameLogic.Instance.Find(MyPlayer.Room.RoomId);
+				if (room == null)
+					return;
 
-			});
-			GameLogic.Instance.Push(() =>
-			{
-				GameRoom room = GameLogic.Instance.Find(myPlayer.Room.RoomId);
-				room.Push(room.LeaveGame, myPlayer.Room.RoomId);
-
-				GameRoom targetRoom = GameLogic.Instance.Find(changePacket.TargetRoom);
-				room.Push(room.EnterGame, myPlayer, true);
+				room.Push(room.LeaveGame, leavePacket.PlayerId);
 			});
 
-			Send(responsePacket);
+			ServerState = PlayerServerState.ServerStateLobby;
+			S_LeaveGame packet = new S_LeaveGame();
+			packet.Change = leavePacket.Change;
+			packet.TargetRoom = leavePacket.TargetRoom;
+			Send(packet);
 		}
 	}
 }

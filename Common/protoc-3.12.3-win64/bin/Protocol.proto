@@ -29,8 +29,7 @@ enum MsgId {
   C_PONG = 22;
   C_REQUEST_ROOMS = 23;
   S_RESPONE_ROOMS = 24;
-  C_CHANGE_ROOM = 25;
-  S_CHANGE_ROOM = 26;
+  C_LEAVE_GAME = 25;
 }
 
 enum CreatureState {
@@ -93,9 +92,18 @@ enum ConsumableType {
 
 message S_EnterGame {
   ObjectInfo player = 1;
+  int32 targetRoom = 2;
 }
 
 message S_LeaveGame {
+  bool change = 1;
+  int32 targetRoom = 2;
+}
+
+message C_LeaveGame {
+  int32 playerId = 1;
+  bool change = 2;
+  int32 targetRoom = 3;
 }
 
 message S_Spawn {
@@ -195,15 +203,6 @@ message S_ResponeRooms {
   repeated RoomInfo rooms = 1;	
 }
 
-message C_ChangeRoom {
-  int32 playerId = 1;
-  int32 targetRoom = 2;
-}
-
-message S_ChangeRoom {
-  int32 targetRoom = 1;
-  bool Success = 2;
-}
 message LobbyPlayerInfo {
   int32 playerDbId = 1;
   string name = 2;
